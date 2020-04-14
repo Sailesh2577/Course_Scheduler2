@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class CLI {
     private Scanner scanner;
 
-
+//setting this up like the car rental system assignment
     public void run() {
         scanner = new Scanner(System.in);
         boolean exit = false;
