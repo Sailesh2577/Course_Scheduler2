@@ -37,4 +37,20 @@ public class Student extends User {
         return "User: Student, Name: " + name + ", Student Id: " + studentId + ", Grade Level: " + gradeLevel;
     }
 
+    public static Student getStudent(String studentId) {
+        Student student = null;
+        if(students.size() == 0) {
+            return student;
+        }
+        Iterator<Student> iterator = students.iterator();
+        while(iterator.hasNext()) {
+            Student currentStudent = iterator.next();
+            if(currentStudent.getId().equals(studentId)) {
+                student = currentStudent;
+            }
+        }
+
+        return student;
+    }
+
 }
