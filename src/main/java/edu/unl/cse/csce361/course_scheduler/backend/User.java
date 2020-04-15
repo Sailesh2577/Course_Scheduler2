@@ -4,4 +4,5 @@ public abstract class User {
 
     abstract String getName();
     abstract String getId();
+    abstract String getUsername();
 }

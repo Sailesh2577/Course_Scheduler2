@@ -1,5 +1,9 @@
 package edu.unl.cse.csce361.course_scheduler.frontend;
 
+import edu.unl.cse.csce361.course_scheduler.backend.Admin;
+import edu.unl.cse.csce361.course_scheduler.backend.User;
+import edu.unl.cse.csce361.course_scheduler.logic.LogicFacade;
+
 import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
@@ -7,7 +11,7 @@ import java.util.Scanner;
 
 public class CLI {
     private Scanner scanner;
-
+    private LogicFacade logicFacade = LogicFacade.getInstance();
 
     public void run() {
         scanner = new Scanner(System.in);
@@ -39,10 +43,24 @@ public class CLI {
                     selection = getSelection();
                 }
             }
+            String inputName;
+            String inputId;
 
             switch (optionSelected) {
                 case ADMIN_SIDE:
-                    System.out.println("Admin login has not yet been implemented");
+                    System.out.println();
+                    System.out.println("Please enter your username: ");
+                    inputName = scanner.nextLine();
+
+                    System.out.println("Enter ID: ");
+                    inputId = scanner.nextLine();
+
+                    if (logicFacade.adminLogin(LogicFacade.getAdminUser(inputName), inputId)) {
+                        System.out.println("Admin menu has not yet been implemented");
+                    }
+                    else {
+                        System.out.println("Username or ID is incorrect");
+                    }
                     break;
                 case STUDENT_SIDE:
                     System.out.println("Student login has not yet been implemented");
