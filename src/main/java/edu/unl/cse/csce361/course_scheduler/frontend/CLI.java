@@ -1,5 +1,7 @@
 package edu.unl.cse.csce361.course_scheduler.frontend;
 
+import edu.unl.cse.csce361.course_scheduler.Backend.Courses;
+import edu.unl.cse.csce361.course_scheduler.Backend.FourYearSchedule;
 import edu.unl.cse.csce361.course_scheduler.Backend.Student;
 import edu.unl.cse.csce361.course_scheduler.Backend.User;
 
@@ -109,7 +111,13 @@ public class CLI {
                             System.out.println("Not yet implemented");
                         } else if(scheduleOption == 2) {
                             //Enter schedule
-                            System.out.println("Not yet implemented");
+                            System.out.println("Please enter the course number you want for your schedule.");
+                            String courseNumber = scanner.nextLine();
+
+                            //Add new course into schedule
+                            Courses courses = FourYearSchedule.getSchedule(courseNumber);
+
+                             System.out.println("Course added.");
                         }
 
                     }
