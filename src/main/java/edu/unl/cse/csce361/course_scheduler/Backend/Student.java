@@ -7,7 +7,7 @@ public class Student extends User {
     private String name;
     private String studentId;
     private String gradeLevel;
-    private static ArrayList<Student> students = new ArrayList<Student>();
+    private static ArrayList<Student> students = new ArrayList<>();
 
 
     public Student(String name, String studentId, String gradeLevel) {

@@ -65,8 +65,7 @@ public class CLI {
 
                         //Gives three options to the user
                         System.out.println("1 - Enter Student Id again");
-                        System.out.println("2 - Create new Student Record");
-                        System.out.println("3 - Back to main menu");
+                        System.out.println("2 - Back to main menu");
                         System.out.println();
                         System.out.println("Please select an option: ");
                         int studentOption = scanner.nextInt();
@@ -76,21 +75,8 @@ public class CLI {
                             System.out.println("Run STUDENT_SIDE again");
 
                         } else if(studentOption == 2) {
-                            //Welcome message for entering the create a student record screen
-                            System.out.println("Creating Student record");
+                            //Back to main menu
 
-                            //Obtain name and grade level to create new student object
-                            System.out.print("Please enter your name: ");
-                            scanner.nextLine();
-                            String name = scanner.nextLine();
-                            System.out.print("Please enter your grade level: ");
-                            String gradeLevel = scanner.nextLine();
-
-                            //Create new student object
-                            student = new Student(name, studentId, gradeLevel);
-
-                        } else if(studentOption == 3) {
-                            //back to main menu
                         }
 
                         //Student record with inputted student id does exist
