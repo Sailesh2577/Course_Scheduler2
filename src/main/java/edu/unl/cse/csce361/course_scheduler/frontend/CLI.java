@@ -60,23 +60,8 @@ public class CLI {
                     //If student does not exist
                     if(student == null) {
                         //Message announcing student record with inputted student id doesn't exist
-                        System.out.println("No student record with this student id. Please select an option below: ");
+                        System.out.println("No student record with this student id. Returned to main menu: ");
 
-                        //Gives two options to the user
-                        System.out.println("1 - Enter Student Id again");
-                        System.out.println("2 - Back to main menu");
-                        System.out.println();
-                        System.out.println("Please select an option: ");
-                        int studentOption = scanner.nextInt();
-
-                        if(studentOption == 1) {
-                            //Run STUDENT_SIDE case again
-                            System.out.println("Run STUDENT_SIDE again");
-
-                        } else if(studentOption == 2) {
-                            //Back to main menu
-
-                        }
 
                         //Student record with inputted student id does exist
                     } else {
