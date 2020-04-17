@@ -66,7 +66,45 @@ public class CLI {
                     }
                     break;
                 case STUDENT_SIDE:
-                    System.out.println("Student login has not yet been implemented");
+                    //Welcome message to the student side of system
+                    System.out.println("Welcome to Student Portal");
+
+                    //Prompt for the user to enter their student id
+                    System.out.println("Please enter name: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Please enter student id: ");
+                    String studentId = scanner.nextLine();
+
+                    //Check to see if a student exists with this studentId
+                    User student = Student.getStudent(studentId, name);
+
+                    //If student does not exist
+                    if(student == null) {
+                        //Message announcing student record with inputted student id doesn't exist
+                        System.out.println("No student record found with inputted credentials. Returned to main menu: ");
+
+
+                        //Student record with inputted student id does exist
+                    } else {
+                        //Welcome message
+                        System.out.println("Welcome " + student.getName());
+
+                        //Prompt the user to enter an option of either editing schedule or entering schedule
+                        System.out.println("1 - Edit Schedule");
+                        System.out.println("2 - Enter Schedule");
+                        System.out.println("Please select an option:");
+                        int scheduleOption = scanner.nextInt();
+
+                        if(scheduleOption == 1) {
+                            //Editing schedule
+                            System.out.println("Not yet implemented");
+                        } else if(scheduleOption == 2) {
+                            //Enter schedule
+                            System.out.println("Not yet implemented");
+                        }
+
+                    }
+
                     break;
                 case EXIT:
                     System.out.println("Goodbye!");
