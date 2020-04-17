@@ -50,6 +50,7 @@ public class CLI {
 
             switch (optionSelected) {
                 case ADMIN_SIDE:
+                    Admin admin;
                     System.out.println();
                     System.out.println("Please enter your username: ");
                     inputName = scanner.nextLine();
@@ -57,8 +58,8 @@ public class CLI {
                     System.out.println("Enter ID: ");
                     inputId = scanner.nextLine();
 
-                    if (logicFacade.adminLogin(LogicFacade.getAdminUser(inputName), inputId)) {
-                        System.out.println("Admin menu has not yet been implemented");
+                    if (logicFacade.adminLogin(logicFacade.getAdminUser(inputName), inputId)) {
+                        adminMenu(logicFacade.getAdminName(logicFacade.getAdminUser(inputName)));
                     }
                     else {
                         System.out.println("Username or ID is incorrect");
@@ -101,6 +102,54 @@ public class CLI {
         return input;
     }
 
+    public void adminMenu(String adminName) {
+        boolean goBack = false;
+        boolean validSelection;
+        int selection;
+        AdminOptions optionSelected = null;
+
+        while (!goBack) {
+            validSelection = false;
+
+            System.out.println();
+            for (AdminOptions adop : AdminOptions.values()) {
+                System.out.println((adop.ordinal() + 1) + " - " + adop.getDescription());
+            }
+
+            System.out.println();
+            System.out.println("Welcome " + adminName + ". Please select an action: ");
+
+            selection = getSelection();
+            scanner.nextLine();
+
+            while (!validSelection) {
+                try {
+                    optionSelected = AdminOptions.values()[selection - 1];
+                    validSelection = true;
+                }
+                catch (ArrayIndexOutOfBoundsException a) {
+                    System.out.println("Invalid selection. Please enter a number from the menu above.");
+                    selection = getSelection();
+                }
+            }
+
+            switch (optionSelected) {
+                case REGISTER_STUDENT:
+                    System.out.println("Student registration not yet implemented");
+                    break;
+                case ADD_COURSE:
+                    System.out.println("Course upload not yet implemented");
+                    break;
+                case BACK:
+                    goBack = true;
+                    break;
+                default:
+                    System.out.println("Whomp whomp");
+                    break;
+            }
+        }
+    }
+
     enum MenuOptions {
         ADMIN_SIDE("Admin login"),
         STUDENT_SIDE("Student login"),
@@ -109,6 +158,18 @@ public class CLI {
         private String description;
 
         MenuOptions(String description) {this.description = description;}
+
+        public String getDescription() {return description;}
+    }
+
+    enum AdminOptions {
+        REGISTER_STUDENT("Register a new student"),
+        ADD_COURSE("Add new course"),
+        BACK("Go back");
+
+        private String description;
+
+        AdminOptions(String description) {this.description = description;}
 
         public String getDescription() {return description;}
     }

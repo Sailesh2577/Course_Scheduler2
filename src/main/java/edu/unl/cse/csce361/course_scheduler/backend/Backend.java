@@ -50,4 +50,8 @@ public class Backend {
 
         admins = (Admin.setAllAdmins(reader.readFile("src/main/resources/csv/admins.csv")));
     }
+
+    public String getAdminName(Admin admin) {
+        return admin.getName();
+    }
 }

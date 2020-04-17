@@ -29,4 +29,8 @@ public class LogicFacade {
     public void setAllAdmins() {
         backendFacade.setAllAdmins();
     }
+
+    public String getAdminName(Admin admin) {
+        return backendFacade.getAdminName(admin);
+    }
 }
