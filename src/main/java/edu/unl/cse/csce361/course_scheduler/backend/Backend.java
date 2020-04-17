@@ -1,10 +1,18 @@
 package edu.unl.cse.csce361.course_scheduler.backend;
 
+import java.io.File;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 public class Backend {
     private static Backend uniqueFacade;
     private Collection<Admin> admins;
+    private CsvReader reader;
+
+    public Backend() {
+        reader = new CsvReader();
+    }
 
     public static Backend getInstance() {
         if (uniqueFacade == null) {
@@ -18,19 +26,28 @@ public class Backend {
     }
 
     public Admin getAdmin(String username) {
-        //TODO: Read from Collection<Admin> admins to match with an admin
-        Admin admin = null;
-        return admin;
+        for (Admin ad : admins) {
+            if (ad.getUsername().equals(username)) {
+                return ad;
+            }
+        }
+        return null;
     }
 
     public boolean verifyAdmin(Admin admin, String inputId) {
         if (admin != null) {
-            if (admin.getId() == inputId) {
+            if (admin.getId().equals(inputId)) {
                 return true;
             } else {
                 return false;
             }
         }
         return false;
+    }
+
+    public void setAllAdmins() {
+        File file = new File("resources/csv/admins.csv");
+
+        admins = (Admin.setAllAdmins(reader.readFile("src/main/resources/csv/admins.csv")));
     }
 }

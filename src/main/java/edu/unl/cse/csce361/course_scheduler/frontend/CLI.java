@@ -20,6 +20,8 @@ public class CLI {
         boolean validSelection;
         MenuOptions optionSelected = null;
 
+        logicFacade.setAllAdmins();
+
         while (!exit) {
             validSelection = false;
             System.out.println();

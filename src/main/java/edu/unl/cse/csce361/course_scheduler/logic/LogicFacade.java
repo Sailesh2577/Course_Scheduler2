@@ -25,4 +25,8 @@ public class LogicFacade {
     public boolean adminLogin(Admin admin, String inputId) {
         return backendFacade.verifyAdmin(admin, inputId);
     }
+
+    public void setAllAdmins() {
+        backendFacade.setAllAdmins();
+    }
 }
