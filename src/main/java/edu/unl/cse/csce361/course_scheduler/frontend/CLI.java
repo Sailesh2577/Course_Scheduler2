@@ -5,7 +5,6 @@ import edu.unl.cse.csce361.course_scheduler.Backend.FourYearSchedule;
 import edu.unl.cse.csce361.course_scheduler.Backend.Student;
 import edu.unl.cse.csce361.course_scheduler.Backend.User;
 
-import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -63,37 +62,8 @@ public class CLI {
                     //If student does not exist
                     if(student == null) {
                         //Message announcing student record with inputted student id doesn't exist
-                        System.out.println("No student record with this student id. Please select an option below: ");
+                        System.out.println("No student record with this student id. Returned to main menu: ");
 
-                        //Gives three options to the user
-                        System.out.println("1 - Enter Student Id again");
-                        System.out.println("2 - Create new Student Record");
-                        System.out.println("3 - Back to main menu");
-                        System.out.println();
-                        System.out.println("Please select an option: ");
-                        int studentOption = scanner.nextInt();
-
-                        if(studentOption == 1) {
-                            //Run STUDENT_SIDE case again
-                            System.out.println("Run STUDENT_SIDE again");
-
-                        } else if(studentOption == 2) {
-                            //Welcome message for entering the create a student record screen
-                            System.out.println("Creating Student record");
-
-                            //Obtain name and grade level to create new student object
-                            System.out.print("Please enter your name: ");
-                            scanner.nextLine();
-                            String name = scanner.nextLine();
-                            System.out.print("Please enter your grade level: ");
-                            String gradeLevel = scanner.nextLine();
-
-                            //Create new student object
-                            student = new Student(name, studentId, gradeLevel);
-
-                        } else if(studentOption == 3) {
-                            //back to main menu
-                        }
 
                         //Student record with inputted student id does exist
                     } else {
