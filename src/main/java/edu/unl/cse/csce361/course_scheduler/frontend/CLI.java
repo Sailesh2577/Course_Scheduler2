@@ -3,7 +3,6 @@ package edu.unl.cse.csce361.course_scheduler.frontend;
 import edu.unl.cse.csce361.course_scheduler.Backend.Student;
 import edu.unl.cse.csce361.course_scheduler.Backend.User;
 
-import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -63,7 +62,7 @@ public class CLI {
                         //Message announcing student record with inputted student id doesn't exist
                         System.out.println("No student record with this student id. Please select an option below: ");
 
-                        //Gives three options to the user
+                        //Gives two options to the user
                         System.out.println("1 - Enter Student Id again");
                         System.out.println("2 - Back to main menu");
                         System.out.println();
