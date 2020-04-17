@@ -62,7 +62,7 @@ public class CLI {
                     //If student does not exist
                     if(student == null) {
                         //Message announcing student record with inputted student id doesn't exist
-                        System.out.println("No student record with this student id. Returned to main menu: ");
+                        System.out.println("No student record found with inputted credentials. Returned to main menu: ");
 
 
                         //Student record with inputted student id does exist
