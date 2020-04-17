@@ -51,11 +51,13 @@ public class CLI {
                     System.out.println("Welcome to Student Portal");
 
                     //Prompt for the user to enter their student id
+                    System.out.println("Please enter name: ");
+                    String name = scanner.nextLine();
                     System.out.print("Please enter student id: ");
                     String studentId = scanner.nextLine();
 
                     //Check to see if a student exists with this studentId
-                    User student = Student.getStudent(studentId);
+                    User student = Student.getStudent(studentId, name);
 
                     //If student does not exist
                     if(student == null) {
