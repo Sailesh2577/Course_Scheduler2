@@ -1,4 +1,4 @@
-package edu.unl.cse.csce361.course_scheduler.Backend;
+package edu.unl.cse.csce361.course_scheduler.backend;
 
 import java.util.ArrayList;
 import java.util.Iterator;
