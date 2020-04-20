@@ -2,8 +2,6 @@ package edu.unl.cse.csce361.course_scheduler.backend;
 
 import java.io.File;
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
 public class Backend {
     private static Backend uniqueFacade;
@@ -54,4 +52,13 @@ public class Backend {
     public String getAdminName(Admin admin) {
         return admin.getName();
     }
+
+    public Student getStudent(String name, String id) {
+        return Student.getStudent(name, id);
+    }
+
+    public String getStudentName(Student student) {
+        return student.getName();
+    }
+
 }

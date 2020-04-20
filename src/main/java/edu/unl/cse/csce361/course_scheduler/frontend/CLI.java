@@ -2,10 +2,8 @@ package edu.unl.cse.csce361.course_scheduler.frontend;
 
 import edu.unl.cse.csce361.course_scheduler.backend.Admin;
 import edu.unl.cse.csce361.course_scheduler.backend.Student;
-import edu.unl.cse.csce361.course_scheduler.backend.User;
 import edu.unl.cse.csce361.course_scheduler.logic.LogicFacade;
 
-import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
