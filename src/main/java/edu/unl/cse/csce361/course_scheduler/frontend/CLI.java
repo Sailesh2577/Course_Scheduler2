@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.course_scheduler.frontend;
 
 import edu.unl.cse.csce361.course_scheduler.backend.Admin;
+import edu.unl.cse.csce361.course_scheduler.backend.Student;
 import edu.unl.cse.csce361.course_scheduler.backend.User;
 import edu.unl.cse.csce361.course_scheduler.logic.LogicFacade;
 
@@ -76,7 +77,7 @@ public class CLI {
                     String studentId = scanner.nextLine();
 
                     //Check to see if a student exists with this studentId
-                    User student = Student.getStudent(studentId, name);
+                    Student student = logicFacade.getStudent(studentId, name);
 
                     //If student does not exist
                     if(student == null) {
@@ -87,7 +88,7 @@ public class CLI {
                         //Student record with inputted student id does exist
                     } else {
                         //Welcome message
-                        System.out.println("Welcome " + student.getName());
+                        System.out.println("Welcome " + logicFacade.getStudentName(student));
 
                         //Prompt the user to enter an option of either editing schedule or entering schedule
                         System.out.println("1 - Edit Schedule");
