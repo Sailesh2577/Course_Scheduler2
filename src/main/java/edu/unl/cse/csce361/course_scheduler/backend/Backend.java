@@ -6,6 +6,7 @@ import java.util.Collection;
 public class Backend {
     private static Backend uniqueFacade;
     private Collection<Admin> admins;
+    private Collection<Student> students;
     private CsvReader reader;
 
     public Backend() {
@@ -51,6 +52,11 @@ public class Backend {
 
     public String getAdminName(Admin admin) {
         return admin.getName();
+    }
+
+    public void setAllStudents() {
+        File file = new File("resources/csv/students.csv");
+        students = (Student.setAllStudents(reader.readFile("src/main/resources/csv/students.csv")));
     }
 
     public Student getStudent(String name, String id) {

@@ -42,4 +42,8 @@ public class LogicFacade {
     public String getStudentName(Student student) {
         return backendFacade.getStudentName(student);
     }
+
+    public void setAllStudents() {
+        backendFacade.setAllStudents();
+    }
 }

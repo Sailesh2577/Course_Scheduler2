@@ -20,6 +20,7 @@ public class CLI {
         MenuOptions optionSelected = null;
 
         logicFacade.setAllAdmins();
+        logicFacade.setAllStudents();
 
         while (!exit) {
             validSelection = false;

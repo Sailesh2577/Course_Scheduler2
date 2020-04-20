@@ -1,7 +1,6 @@
 package edu.unl.cse.csce361.course_scheduler.backend;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 public class Student extends User {
     private String name;
@@ -39,6 +38,16 @@ public class Student extends User {
     public String toString() {
         return "User: Student, Name: " + name + ", Student Id: " + studentId + ", Grade Level: " + gradeLevel;
     }
+
+    public static Collection<Student> setAllStudents(Collection<Map<String, String>> studentList) {
+        List<Student> students = new ArrayList<Student>();
+
+        for (Map<String,String> map : studentList) {
+            students.add(new Student(map.get("Name"),map.get("Student Id"),map.get("Grade Level")));
+        }
+        return students;
+    }
+
 
     public static Student getStudent(String studentId, String name) {
         Student student = null;
