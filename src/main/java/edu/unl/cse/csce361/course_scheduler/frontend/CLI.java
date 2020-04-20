@@ -86,23 +86,7 @@ public class CLI {
 
                         //Student record with inputted student id does exist
                     } else {
-                        //Welcome message
-                        System.out.println("Welcome " + logicFacade.getStudentName(student));
-
-                        //Prompt the user to enter an option of either editing schedule or entering schedule
-                        System.out.println("1 - Edit Schedule");
-                        System.out.println("2 - Enter Schedule");
-                        System.out.println("Please select an option:");
-                        int scheduleOption = scanner.nextInt();
-
-                        if(scheduleOption == 1) {
-                            //Editing schedule
-                            System.out.println("Not yet implemented");
-                        } else if(scheduleOption == 2) {
-                            //Enter schedule
-                            System.out.println("Not yet implemented");
-                        }
-
+                        studentMenu(student);
                     }
 
                     break;
@@ -188,6 +172,56 @@ public class CLI {
         }
     }
 
+    public void studentMenu(Student student) {
+        boolean goBack = false;
+        boolean validSelection;
+        int selection;
+        StudentOptions optionSelected = null;
+
+
+        while(!goBack) {
+            //Welcome message
+            System.out.println("\nWelcome " + logicFacade.getStudentName(student));
+            validSelection = false;
+
+            for (StudentOptions studentSelection : StudentOptions.values()) {
+                System.out.println((studentSelection.ordinal() + 1) + " - " + studentSelection.getDescription());
+            }
+            System.out.print("Please select an option: ");
+
+            selection = getSelection();
+            scanner.nextLine();
+
+            while (!validSelection) {
+                try {
+                    optionSelected = StudentOptions.values()[selection - 1];
+                    validSelection = true;
+                }
+                catch (ArrayIndexOutOfBoundsException a) {
+                    System.out.println("Invalid selection. Please enter a number from the menu above.");
+                    selection = getSelection();
+                }
+            }
+
+            switch (optionSelected) {
+                case EDIT_SCHEDULE:
+                    System.out.println("Edit schedule not yet implemented");
+                    break;
+                case ENTER_SCHEDULE:
+                    System.out.println("Enter schedule not yet implemented");
+                    break;
+                case BACK:
+                    goBack = true;
+                    break;
+                default:
+                    System.out.println("Not a valid option");
+                    break;
+            }
+
+        }
+
+    }
+
     enum MenuOptions {
         ADMIN_SIDE("Admin login"),
         STUDENT_SIDE("Student login"),
@@ -208,6 +242,18 @@ public class CLI {
         private String description;
 
         AdminOptions(String description) {this.description = description;}
+
+        public String getDescription() {return description;}
+    }
+
+    enum StudentOptions {
+        EDIT_SCHEDULE("Edit existing schedule"),
+        ENTER_SCHEDULE("Enter a schedule"),
+        BACK("Go back");
+
+        private String description;
+
+        StudentOptions(String description) {this.description = description;}
 
         public String getDescription() {return description;}
     }

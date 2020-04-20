@@ -55,7 +55,6 @@ public class Backend {
     }
 
     public void setAllStudents() {
-        File file = new File("resources/csv/students.csv");
         students = (Student.setAllStudents(reader.readFile("src/main/resources/csv/students.csv")));
     }
 
