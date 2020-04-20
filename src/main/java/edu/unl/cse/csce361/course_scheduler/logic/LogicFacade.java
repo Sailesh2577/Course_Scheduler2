@@ -2,6 +2,7 @@ package edu.unl.cse.csce361.course_scheduler.logic;
 
 import edu.unl.cse.csce361.course_scheduler.backend.Admin;
 import edu.unl.cse.csce361.course_scheduler.backend.Backend;
+import edu.unl.cse.csce361.course_scheduler.backend.Student;
 
 public class LogicFacade {
     private static LogicFacade uniqueFacade;
@@ -32,5 +33,13 @@ public class LogicFacade {
 
     public String getAdminName(Admin admin) {
         return backendFacade.getAdminName(admin);
+    }
+
+    public Student getStudent(String name, String id) {
+        return backendFacade.getStudent(name, id);
+    }
+
+    public String getStudentName(Student student) {
+        return backendFacade.getStudentName(student);
     }
 }

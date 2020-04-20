@@ -1,4 +1,4 @@
-package edu.unl.cse.csce361.course_scheduler.Backend;
+package edu.unl.cse.csce361.course_scheduler.backend;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,6 +29,10 @@ public class Student extends User {
 
     public String getGradeLevel() {
         return gradeLevel;
+    }
+
+    public String getUsername() {
+        return null;
     }
 
     @Override
