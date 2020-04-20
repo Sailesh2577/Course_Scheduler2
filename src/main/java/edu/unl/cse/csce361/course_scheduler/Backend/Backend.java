@@ -54,12 +54,4 @@ public class Backend {
     public String getAdminName(Admin admin) {
         return admin.getName();
     }
-
-    public Student getStudent(String name, String id) {
-        return Student.getStudent(name, id);
-    }
-
-    public String getStudentName(Student student) {
-        return student.getName();
-    }
 }
