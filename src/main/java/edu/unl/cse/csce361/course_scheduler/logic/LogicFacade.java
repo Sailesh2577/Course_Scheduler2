@@ -35,4 +35,8 @@ public class LogicFacade {
     public void registerStudent(String newStudentName, String description) {
         backendFacade.registerStudent(newStudentName,description);
     }
+
+    public void addNewCourse(String courseName, String courseNumber) {
+        backendFacade.addNewCourse(courseName,courseNumber);
+    }
 }

@@ -171,6 +171,8 @@ public class CLI {
             }
             String newStudentName;
             GradeLevels gradeLevelSelected = null;
+            String courseName;
+            String courseNumber;
 
             switch (optionSelected) {
                 case REGISTER_STUDENT:
@@ -203,7 +205,15 @@ public class CLI {
 
                     break;
                 case ADD_COURSE:
-                    System.out.println("Course upload not yet implemented");
+                    System.out.println();
+                    System.out.println("Please enter course name: ");
+                    courseName = scanner.nextLine();
+
+                    System.out.println();
+                    System.out.println("Please enter course department code and number (Use format 'XXXX 000')");
+                    courseNumber = scanner.nextLine();
+
+                    logicFacade.addNewCourse(courseName,courseNumber);
                     break;
                 case BACK:
                     goBack = true;

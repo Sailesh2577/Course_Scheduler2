@@ -62,4 +62,8 @@ public class Backend {
         Student student = new Student(newStudentName,description);
         writer.writeToFile("students.csv",student.toCsvFormat());
     }
+
+    public void addNewCourse(String courseName, String courseNumber) {
+        //TODO:Create new course object and add to courses CSV file
+    }
 }

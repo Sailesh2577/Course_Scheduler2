@@ -18,6 +18,7 @@ public class Student extends User {
         students.add(this);
     }
 
+    //this constructor is for use with admin student registration
     public Student(String name, String gradeLevel) {
         this.name = name;
         this.gradeLevel = gradeLevel;
@@ -27,6 +28,7 @@ public class Student extends User {
 
     }
 
+    //creates a string username following the first initial + last name format
     private String generateUsername(String name) {
         String[] nameSplit = name.split(" ");
         String newUsername = nameSplit[0].charAt(0) + nameSplit[1];
@@ -44,7 +46,7 @@ public class Student extends User {
         }
         return newUsername;
     }
-
+    //generates a random eight digit id
     private String generateId() {
         Random rand = new Random();
         int eightDigits = 10000000 + rand.nextInt(90000000);
@@ -63,7 +65,7 @@ public class Student extends User {
 
     @Override
     String getUsername() {
-        return null;
+        return username;
     }
 
     public String getGradeLevel() {
@@ -75,6 +77,7 @@ public class Student extends User {
         return "User: Student, Name: " + name + ", Student Id: " + studentId + ", Grade Level: " + gradeLevel;
     }
 
+    //creates a string for use in adding to CSV file
     public String toCsvFormat() {
         return (name + "," + studentId + "," + gradeLevel);
     }
