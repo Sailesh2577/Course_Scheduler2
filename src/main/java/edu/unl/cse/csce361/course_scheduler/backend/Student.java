@@ -1,20 +1,54 @@
-package edu.unl.cse.csce361.course_scheduler.Backend;
+package edu.unl.cse.csce361.course_scheduler.backend;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 public class Student extends User {
     private String name;
     private String studentId;
     private String gradeLevel;
+    private String username;
     private static ArrayList<Student> students = new ArrayList<>();
-
 
     public Student(String name, String studentId, String gradeLevel) {
         this.name = name;
         this.studentId = studentId;
         this.gradeLevel = gradeLevel;
         students.add(this);
+    }
+
+    public Student(String name, String gradeLevel) {
+        this.name = name;
+        this.gradeLevel = gradeLevel;
+        this.studentId = generateId();
+        this.username = generateUsername(name);
+        students.add(this);
+
+    }
+
+    private String generateUsername(String name) {
+        String[] nameSplit = name.split(" ");
+        String newUsername = nameSplit[0].charAt(0) + nameSplit[1];
+
+        if (students != null) {
+            int i = 1;
+            for (Student s : students) {
+                if (s.getUsername().equals(newUsername)) {
+                    ++i;
+                }
+            }
+            if (i > 1) {
+                newUsername = newUsername + Integer.toString(i);
+            }
+        }
+        return newUsername;
+    }
+
+    private String generateId() {
+        Random rand = new Random();
+        int eightDigits = 10000000 + rand.nextInt(90000000);
+        return Integer.toString(eightDigits);
     }
 
     @Override
@@ -27,6 +61,11 @@ public class Student extends User {
         return studentId;
     }
 
+    @Override
+    String getUsername() {
+        return null;
+    }
+
     public String getGradeLevel() {
         return gradeLevel;
     }
@@ -34,6 +73,10 @@ public class Student extends User {
     @Override
     public String toString() {
         return "User: Student, Name: " + name + ", Student Id: " + studentId + ", Grade Level: " + gradeLevel;
+    }
+
+    public String toCsvFormat() {
+        return (name + "," + studentId + "," + gradeLevel);
     }
 
     public static Student getStudent(String studentId, String name) {
@@ -51,5 +94,7 @@ public class Student extends User {
 
         return student;
     }
+
+    public static ArrayList<Student> getAllStudents() {return students;}
 
 }

@@ -1,10 +1,9 @@
 package edu.unl.cse.csce361.course_scheduler.frontend;
 
 import edu.unl.cse.csce361.course_scheduler.backend.Admin;
-import edu.unl.cse.csce361.course_scheduler.backend.User;
+import edu.unl.cse.csce361.course_scheduler.backend.Student;
 import edu.unl.cse.csce361.course_scheduler.logic.LogicFacade;
 
-import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -76,7 +75,7 @@ public class CLI {
                     String studentId = scanner.nextLine();
 
                     //Check to see if a student exists with this studentId
-                    User student = Student.getStudent(studentId, name);
+                    Student student = Student.getStudent(studentId, name);
 
                     //If student does not exist
                     if(student == null) {
@@ -170,10 +169,38 @@ public class CLI {
                     selection = getSelection();
                 }
             }
+            String newStudentName;
+            GradeLevels gradeLevelSelected = null;
 
             switch (optionSelected) {
                 case REGISTER_STUDENT:
-                    System.out.println("Student registration not yet implemented");
+                    validSelection = false;
+                    System.out.println();
+                    System.out.println("Enter student's full name: ");
+                    newStudentName = scanner.nextLine();
+
+                    System.out.println();
+                    for (GradeLevels gl : GradeLevels.values()) {
+                        System.out.println((gl.ordinal() + 1) + " - " + gl.getDescription());
+                    }
+                    System.out.println("Please select student's grade level: ");
+
+                    selection = getSelection();
+                    scanner.nextLine();
+
+                    while (!validSelection) {
+                        try {
+                            gradeLevelSelected = GradeLevels.values()[selection - 1];
+                            validSelection = true;
+                        }
+                        catch (ArrayIndexOutOfBoundsException a) {
+                            System.out.println("Invalid selection. Please enter a number from the menu above.");
+                            selection = getSelection();
+                        }
+                    }
+
+                    logicFacade.registerStudent(newStudentName,gradeLevelSelected.getDescription());
+
                     break;
                 case ADD_COURSE:
                     System.out.println("Course upload not yet implemented");
@@ -210,5 +237,18 @@ public class CLI {
         AdminOptions(String description) {this.description = description;}
 
         public String getDescription() {return description;}
+    }
+
+    enum GradeLevels {
+        FRESHMAN("Freshman"),
+        SOPHOMORE("Sophomore"),
+        JUNIOR("Junior"),
+        SENIOR("Senior");
+
+        private String description;
+
+        GradeLevels(String description) {this.description = description;}
+
+        public  String getDescription() {return description;}
     }
 }

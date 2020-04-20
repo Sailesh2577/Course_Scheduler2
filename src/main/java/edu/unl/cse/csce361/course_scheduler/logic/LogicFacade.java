@@ -22,9 +22,7 @@ public class LogicFacade {
         return backendFacade.getAdmin(inputName);
     }
 
-    public boolean adminLogin(Admin admin, String inputId) {
-        return backendFacade.verifyAdmin(admin, inputId);
-    }
+    public boolean adminLogin(Admin admin, String inputId) {return backendFacade.verifyAdmin(admin, inputId);}
 
     public void setAllAdmins() {
         backendFacade.setAllAdmins();
@@ -32,5 +30,9 @@ public class LogicFacade {
 
     public String getAdminName(Admin admin) {
         return backendFacade.getAdminName(admin);
+    }
+
+    public void registerStudent(String newStudentName, String description) {
+        backendFacade.registerStudent(newStudentName,description);
     }
 }

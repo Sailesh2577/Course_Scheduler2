@@ -4,14 +4,17 @@ import java.io.File;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import edu.unl.cse.csce361.course_scheduler.backend.Admin;
 
 public class Backend {
     private static Backend uniqueFacade;
     private Collection<Admin> admins;
     private CsvReader reader;
+    private CsvWriter writer;
 
     public Backend() {
         reader = new CsvReader();
+        writer = new CsvWriter();
     }
 
     public static Backend getInstance() {
@@ -53,5 +56,10 @@ public class Backend {
 
     public String getAdminName(Admin admin) {
         return admin.getName();
+    }
+
+    public void registerStudent(String newStudentName, String description) {
+        Student student = new Student(newStudentName,description);
+        writer.writeToFile("students.csv",student.toCsvFormat());
     }
 }
