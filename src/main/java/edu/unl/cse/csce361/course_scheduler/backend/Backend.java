@@ -59,7 +59,12 @@ public class Backend {
     }
 
     public Student getStudent(String name, String id) {
-        return Student.getStudent(name, id);
+        for (Student student : students) {
+            if (student.getName().equals(name) && student.getId().equals(id)) {
+                return student;
+            }
+        }
+        return null;
     }
 
     public String getStudentName(Student student) {

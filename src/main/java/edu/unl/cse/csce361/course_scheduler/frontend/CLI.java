@@ -76,7 +76,7 @@ public class CLI {
                     String studentId = scanner.nextLine();
 
                     //Check to see if a student exists with this studentId
-                    Student student = logicFacade.getStudent(studentId, name);
+                    Student student = logicFacade.getStudent(name, studentId);
 
                     //If student does not exist
                     if(student == null) {

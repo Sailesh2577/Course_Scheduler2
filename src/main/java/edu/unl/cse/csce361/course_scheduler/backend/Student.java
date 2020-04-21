@@ -6,14 +6,12 @@ public class Student extends User {
     private String name;
     private String studentId;
     private String gradeLevel;
-    private static ArrayList<Student> students = new ArrayList<>();
 
 
     public Student(String name, String studentId, String gradeLevel) {
         this.name = name;
         this.studentId = studentId;
         this.gradeLevel = gradeLevel;
-        students.add(this);
     }
 
     @Override
@@ -48,21 +46,5 @@ public class Student extends User {
         return students;
     }
 
-
-    public static Student getStudent(String studentId, String name) {
-        Student student = null;
-        if(students.size() == 0) {
-            return student;
-        }
-        Iterator<Student> iterator = students.iterator();
-        while(iterator.hasNext()) {
-            Student currentStudent = iterator.next();
-            if(currentStudent.getId().equals(studentId) && currentStudent.getName().equals(name)) {
-                student = currentStudent;
-            }
-        }
-
-        return student;
-    }
 
 }
