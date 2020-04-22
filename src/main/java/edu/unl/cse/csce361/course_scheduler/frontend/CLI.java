@@ -1,8 +1,8 @@
 package edu.unl.cse.csce361.course_scheduler.frontend;
 
-import edu.unl.cse.csce361.course_scheduler.backend.Courses;
-import edu.unl.cse.csce361.course_scheduler.backend.FourYearSchedule;
 import edu.unl.cse.csce361.course_scheduler.backend.Admin;
+import edu.unl.cse.csce361.course_scheduler.backend.Course;
+import edu.unl.cse.csce361.course_scheduler.backend.FourYearSchedule;
 import edu.unl.cse.csce361.course_scheduler.backend.Student;
 import edu.unl.cse.csce361.course_scheduler.logic.LogicFacade;
 
@@ -102,10 +102,11 @@ public class CLI {
                         } else if(scheduleOption == 2) {
                             //Enter schedule
                             System.out.println("Please enter the course number you want for your schedule.");
+                            System.out.println();
                             String courseNumber = scanner.nextLine();
 
                             //Add new course into schedule
-                            Courses courses = FourYearSchedule.getSchedule(courseNumber);
+                            Course courses = FourYearSchedule.getSchedule(courseNumber);
 
                              System.out.println("Course added.");
                         }

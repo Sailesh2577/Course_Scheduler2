@@ -2,6 +2,7 @@ package edu.unl.cse.csce361.course_scheduler.logic;
 
 import edu.unl.cse.csce361.course_scheduler.backend.Admin;
 import edu.unl.cse.csce361.course_scheduler.backend.Backend;
+import edu.unl.cse.csce361.course_scheduler.backend.FourYearSchedule;
 
 public class LogicFacade {
     private static LogicFacade uniqueFacade;
@@ -39,4 +40,10 @@ public class LogicFacade {
     public void addNewCourse(String courseName, String courseNumber) {
         backendFacade.addNewCourse(courseName,courseNumber);
     }
+
+    public static FourYearSchedule getSchedule(String courseNumber) { return backendFacade.getSchedule(courseNumber); }
+
+    public String getCourseNumber(FourYearSchedule course) {return backendFacade.getCourseNumber(course);}
+
+    public boolean courseExistence(FourYearSchedule course, String courseNumber) {return backendFacade.checkCoursesExist(course,  courseNumber);}
 }

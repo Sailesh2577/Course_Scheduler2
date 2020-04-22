@@ -9,6 +9,7 @@ import edu.unl.cse.csce361.course_scheduler.backend.Admin;
 public class Backend {
     private static Backend uniqueFacade;
     private Collection<Admin> admins;
+    private Collection<FourYearSchedule> courses;
     private CsvReader reader;
     private CsvWriter writer;
 
@@ -59,11 +60,38 @@ public class Backend {
     }
 
     public void registerStudent(String newStudentName, String description) {
-        Student student = new Student(newStudentName,description);
-        writer.writeToFile("students.csv",student.toCsvFormat());
+        Student student = new Student(newStudentName, description);
+        writer.writeToFile("students.csv", student.toCsvFormat());
     }
 
     public void addNewCourse(String courseName, String courseNumber) {
         //TODO:Create new course object and add to courses CSV file
     }
+
+    public Collection<FourYearSchedule> getCourses() {
+        return courses;
+    }
+
+    public FourYearSchedule getSchedule(String courseNumber) {
+        for (FourYearSchedule co : courses) {
+            if (co.getCourseNumber().equals(courseNumber)) {
+                return co;
+            }
+        }
+        return null;
+    }
+
+    public String getCourseNumber(FourYearSchedule course) {
+        return course.getCourseNumber();
+    }
+
+    public boolean checkCoursesExist(FourYearSchedule course, String courseNumber) {
+        if(course != null) {
+            if(course.getCourseNumber().equals(courseNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
