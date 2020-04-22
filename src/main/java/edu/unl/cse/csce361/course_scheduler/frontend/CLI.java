@@ -102,7 +102,6 @@ public class CLI {
                         } else if(scheduleOption == 2) {
                             //Enter schedule
                             System.out.println("Please enter the course number you want for your schedule.");
-                            System.out.println();
                             String courseNumber = scanner.nextLine();
 
                             //Add new course into schedule
