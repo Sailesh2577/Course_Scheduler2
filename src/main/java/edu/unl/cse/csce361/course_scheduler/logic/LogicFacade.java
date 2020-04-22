@@ -41,8 +41,6 @@ public class LogicFacade {
         backendFacade.addNewCourse(courseName,courseNumber);
     }
 
-    public static FourYearSchedule getSchedule(String courseNumber) { return backendFacade.getSchedule(courseNumber); }
-
     public String getCourseNumber(FourYearSchedule course) {return backendFacade.getCourseNumber(course);}
 
     public boolean courseExistence(FourYearSchedule course, String courseNumber) {return backendFacade.checkCoursesExist(course,  courseNumber);}
