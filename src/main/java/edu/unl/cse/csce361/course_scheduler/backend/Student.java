@@ -6,6 +6,7 @@ public class Student extends User {
     private String name;
     private String studentId;
     private String gradeLevel;
+    private FourYearSchedule schedule;
 
 
     public Student(String name, String studentId, String gradeLevel) {
@@ -44,6 +45,10 @@ public class Student extends User {
             students.add(new Student(map.get("Name"),map.get("Student Id"),map.get("Grade Level")));
         }
         return students;
+    }
+
+    public FourYearSchedule getSchedule() {
+        return schedule;
     }
 
 
