@@ -35,6 +35,14 @@ public class LogicFacade {
         return backendFacade.getAdminName(admin);
     }
 
+    public void registerStudent(String newStudentName, String description) {
+        backendFacade.registerStudent(newStudentName,description);
+    }
+
+    public void addNewCourse(String courseName, String courseNumber) {
+        backendFacade.addNewCourse(courseName,courseNumber);
+    }
+
     public Student getStudent(String name, String id) {
         return backendFacade.getStudent(name, id);
     }

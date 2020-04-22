@@ -153,12 +153,53 @@ public class CLI {
                 }
             }
 
+            String newStudentName;
+            GradeLevels gradeLevelSelected = null;
+            String courseName;
+            String courseNumber;
+
+
             switch (optionSelected) {
                 case REGISTER_STUDENT:
-                    System.out.println("Student registration not yet implemented");
+                    validSelection = false;
+                    System.out.println();
+                    System.out.println("Enter student's full name: ");
+                    newStudentName = scanner.nextLine();
+
+                    System.out.println();
+                    for (GradeLevels gl : GradeLevels.values()) {
+                        System.out.println((gl.ordinal() + 1) + " - " + gl.getDescription());
+                    }
+                    System.out.println("Please select student's grade level: ");
+
+                    selection = getSelection();
+                    scanner.nextLine();
+
+                    while (!validSelection) {
+                        try {
+                            gradeLevelSelected = GradeLevels.values()[selection - 1];
+                            validSelection = true;
+                        }
+                        catch (ArrayIndexOutOfBoundsException a) {
+                            System.out.println("Invalid selection. Please enter a number from the menu above.");
+                            selection = getSelection();
+                        }
+                    }
+
+                    logicFacade.registerStudent(newStudentName,gradeLevelSelected.getDescription());
+
                     break;
                 case ADD_COURSE:
-                    System.out.println("Course upload not yet implemented");
+                    System.out.println();
+                    System.out.println("Please enter course name: ");
+                    courseName = scanner.nextLine();
+
+                    System.out.println();
+                    System.out.println("Please enter course department code and number (Use format 'XXXX 000')");
+                    courseNumber = scanner.nextLine();
+
+                    logicFacade.addNewCourse(courseName,courseNumber);
+
                     break;
                 case BACK:
                     goBack = true;
@@ -243,6 +284,20 @@ public class CLI {
 
         public String getDescription() {return description;}
     }
+
+    enum GradeLevels {
+        FRESHMAN("Freshman"),
+        SOPHOMORE("Sophomore"),
+        JUNIOR("Junior"),
+        SENIOR("Senior");
+
+        private final String description;
+
+        GradeLevels(String description) {this.description = description;}
+
+        public  String getDescription() {return description;}
+    }
+
 
     enum StudentOptions {
         EDIT_SCHEDULE("Edit existing schedule"),

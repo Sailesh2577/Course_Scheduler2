@@ -5,6 +5,7 @@ import java.util.Collection;
 public class Backend {
     private static Backend uniqueFacade;
     private Collection<Admin> admins;
+    private Collection<Student> students;
     private final CsvReader reader;
     private final CsvWriter writer;
 
@@ -51,5 +52,22 @@ public class Backend {
 
     public void addNewCourse(String courseName, String courseNumber) {
         writer.writeToFile("courses.csv", (courseName + ", " + courseNumber));
+    }
+
+    public void setAllStudents() {
+        students = (Student.setAllStudents(reader.readFile("src/main/resources/csv/students.csv")));
+    }
+
+    public Student getStudent(String name, String id) {
+        for(Student student: students) {
+            if(student.getName().equals(name) && student.getId().equals(id)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public String getStudentName(Student student) {
+        return student.getName();
     }
 }
