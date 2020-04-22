@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public class Admin extends User {
-    private String name;
-    private String id;
-    private String username;
+    private final String name;
+    private final String id;
+    private final String username;
 
     public Admin(String name, String username, String id) {
         this.name = name;
@@ -17,7 +17,7 @@ public class Admin extends User {
     }
 
     public static Collection<Admin> setAllAdmins(Collection<Map<String, String>> adminList) {
-        List<Admin> admins = new ArrayList<Admin>();
+        List<Admin> admins = new ArrayList<>();
 
         for (Map<String,String> map : adminList) {
             admins.add(new Admin(map.get("Name"),map.get("Username"),map.get("ID")));
