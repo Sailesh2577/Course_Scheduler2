@@ -1,6 +1,5 @@
 package edu.unl.cse.csce361.course_scheduler.frontend;
 
-import edu.unl.cse.csce361.course_scheduler.backend.Admin;
 import edu.unl.cse.csce361.course_scheduler.backend.Student;
 import edu.unl.cse.csce361.course_scheduler.logic.LogicFacade;
 
@@ -10,7 +9,7 @@ import java.util.Scanner;
 
 public class CLI {
     private Scanner scanner;
-    private LogicFacade logicFacade = LogicFacade.getInstance();
+    private final LogicFacade logicFacade = LogicFacade.getInstance();
 
     public void run() {
         scanner = new Scanner(System.in);
@@ -50,7 +49,6 @@ public class CLI {
 
             switch (optionSelected) {
                 case ADMIN_SIDE:
-                    Admin admin;
                     System.out.println();
                     System.out.println("Please enter your username: ");
                     inputName = scanner.nextLine();
@@ -227,7 +225,7 @@ public class CLI {
         STUDENT_SIDE("Student login"),
         EXIT("Exit");
 
-        private String description;
+        private final String description;
 
         MenuOptions(String description) {this.description = description;}
 
@@ -239,7 +237,7 @@ public class CLI {
         ADD_COURSE("Add new course"),
         BACK("Go back");
 
-        private String description;
+        private final String description;
 
         AdminOptions(String description) {this.description = description;}
 
@@ -251,7 +249,7 @@ public class CLI {
         ENTER_SCHEDULE("Enter a schedule"),
         BACK("Go back");
 
-        private String description;
+        private final String description;
 
         StudentOptions(String description) {this.description = description;}
 
