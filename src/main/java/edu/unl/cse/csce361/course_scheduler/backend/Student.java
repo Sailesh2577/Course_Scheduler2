@@ -1,15 +1,15 @@
 package edu.unl.cse.csce361.course_scheduler.backend;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
+import java.util.*;
 
 public class Student extends User {
     private String name;
     private String studentId;
     private String gradeLevel;
     private String username;
+    private FourYearSchedule schedule;
     private static ArrayList<Student> students = new ArrayList<>();
+
 
     public Student(String name, String studentId, String gradeLevel) {
         this.name = name;
@@ -46,12 +46,14 @@ public class Student extends User {
         }
         return newUsername;
     }
+
     //generates a random eight digit id
     private String generateId() {
         Random rand = new Random();
         int eightDigits = 10000000 + rand.nextInt(90000000);
         return Integer.toString(eightDigits);
     }
+
 
     @Override
     public String getName() {
@@ -63,13 +65,15 @@ public class Student extends User {
         return studentId;
     }
 
-    @Override
-    String getUsername() {
-        return username;
-    }
-
     public String getGradeLevel() {
         return gradeLevel;
+    }
+
+    public String getUsername() {
+        if(username == null) {
+            return "N/A";
+        }
+        return username;
     }
 
     @Override
@@ -82,22 +86,19 @@ public class Student extends User {
         return (name + "," + studentId + "," + gradeLevel);
     }
 
-    public static Student getStudent(String studentId, String name) {
-        Student student = null;
-        if(students.size() == 0) {
-            return student;
-        }
-        Iterator<Student> iterator = students.iterator();
-        while(iterator.hasNext()) {
-            Student currentStudent = iterator.next();
-            if(currentStudent.getId().equals(studentId) && currentStudent.getName().equals(name)) {
-                student = currentStudent;
-            }
-        }
 
-        return student;
+    public static Collection<Student> setAllStudents(Collection<Map<String, String>> studentList) {
+        List<Student> students = new ArrayList<Student>();
+
+        for (Map<String,String> map : studentList) {
+            students.add(new Student(map.get("Name"),map.get("Student Id"),map.get("Grade Level")));
+        }
+        return students;
     }
 
-    public static ArrayList<Student> getAllStudents() {return students;}
+    public FourYearSchedule getSchedule() {
+        return schedule;
+    }
+
 
 }

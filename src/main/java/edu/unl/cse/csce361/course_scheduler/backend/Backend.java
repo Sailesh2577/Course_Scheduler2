@@ -1,17 +1,14 @@
 package edu.unl.cse.csce361.course_scheduler.backend;
 
-import java.io.File;
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import edu.unl.cse.csce361.course_scheduler.backend.Admin;
 
 public class Backend {
     private static Backend uniqueFacade;
     private Collection<Admin> admins;
+    private Collection<Student> students;
     private Collection<FourYearSchedule> courses;
-    private CsvReader reader;
-    private CsvWriter writer;
+    private final CsvReader reader;
+    private final CsvWriter writer;
 
     public Backend() {
         reader = new CsvReader();
@@ -25,10 +22,6 @@ public class Backend {
         return uniqueFacade;
     }
 
-    public Collection<Admin> getAllAdmins() {
-        return admins;
-    }
-
     public Admin getAdmin(String username) {
         for (Admin ad : admins) {
             if (ad.getUsername().equals(username)) {
@@ -40,18 +33,12 @@ public class Backend {
 
     public boolean verifyAdmin(Admin admin, String inputId) {
         if (admin != null) {
-            if (admin.getId().equals(inputId)) {
-                return true;
-            } else {
-                return false;
-            }
+            return (admin.getId().equals(inputId));
         }
         return false;
     }
 
     public void setAllAdmins() {
-        File file = new File("resources/csv/admins.csv");
-
         admins = (Admin.setAllAdmins(reader.readFile("src/main/resources/csv/admins.csv")));
     }
 
@@ -60,25 +47,34 @@ public class Backend {
     }
 
     public void registerStudent(String newStudentName, String description) {
-        Student student = new Student(newStudentName, description);
-        writer.writeToFile("students.csv", student.toCsvFormat());
+        Student student = new Student(newStudentName,description);
+        writer.writeToFile("students.csv",student.toCsvFormat());
+        setAllStudents();
     }
 
     public void addNewCourse(String courseName, String courseNumber) {
-        //TODO:Create new course object and add to courses CSV file
+        writer.writeToFile("courses.csv", (courseName + ", " + courseNumber));
+    }
+
+    public void setAllStudents() {
+        students = (Student.setAllStudents(reader.readFile("src/main/resources/csv/students.csv")));
+    }
+
+    public Student getStudent(String name, String id) {
+        for(Student student: students) {
+            if(student.getName().equals(name) && student.getId().equals(id)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public String getStudentName(Student student) {
+        return student.getName();
     }
 
     public Collection<FourYearSchedule> getCourses() {
         return courses;
-    }
-
-    public FourYearSchedule getSchedule(String courseNumber) {
-        for (FourYearSchedule co : courses) {
-            if (co.getCourseNumber().equals(courseNumber)) {
-                return co;
-            }
-        }
-        return null;
     }
 
     public String getCourseNumber(FourYearSchedule course) {

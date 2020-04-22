@@ -16,7 +16,7 @@ public class CsvReader {
             BufferedReader buff = new BufferedReader(new FileReader(filename));
             while ((readLine = buff.readLine()) != null) {
                 Map<String, String> map = new HashMap<>();
-                String row[] = readLine.split(",");
+                String[] row = readLine.split(",");
 
                 if (!keyLineRead) {
                     keys = Arrays.asList(row);
@@ -28,8 +28,6 @@ public class CsvReader {
                     csvList.add(map);
                 }
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

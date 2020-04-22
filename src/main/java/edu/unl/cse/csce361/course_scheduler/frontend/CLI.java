@@ -1,6 +1,5 @@
 package edu.unl.cse.csce361.course_scheduler.frontend;
 
-import edu.unl.cse.csce361.course_scheduler.backend.Admin;
 import edu.unl.cse.csce361.course_scheduler.backend.Course;
 import edu.unl.cse.csce361.course_scheduler.backend.FourYearSchedule;
 import edu.unl.cse.csce361.course_scheduler.backend.Student;
@@ -12,7 +11,7 @@ import java.util.Scanner;
 
 public class CLI {
     private Scanner scanner;
-    private LogicFacade logicFacade = LogicFacade.getInstance();
+    private final LogicFacade logicFacade = LogicFacade.getInstance();
 
     public void run() {
         scanner = new Scanner(System.in);
@@ -22,6 +21,7 @@ public class CLI {
         MenuOptions optionSelected = null;
 
         logicFacade.setAllAdmins();
+        logicFacade.setAllStudents();
 
         while (!exit) {
             validSelection = false;
@@ -51,7 +51,6 @@ public class CLI {
 
             switch (optionSelected) {
                 case ADMIN_SIDE:
-                    Admin admin;
                     System.out.println();
                     System.out.println("Please enter your username: ");
                     inputName = scanner.nextLine();
@@ -77,7 +76,7 @@ public class CLI {
                     String studentId = scanner.nextLine();
 
                     //Check to see if a student exists with this studentId
-                    Student student = Student.getStudent(studentId, name);
+                    Student student = logicFacade.getStudent(name, studentId);
 
                     //If student does not exist
                     if(student == null) {
@@ -87,6 +86,7 @@ public class CLI {
 
                         //Student record with inputted student id does exist
                     } else {
+
                         //Welcome message
                         System.out.println("Welcome " + student.getName());
 
@@ -101,15 +101,17 @@ public class CLI {
                             System.out.println("Not yet implemented");
                         } else if(scheduleOption == 2) {
                             //Enter schedule
-                            System.out.println("Please enter the course number you want for your schedule.");
+                            System.out.println("Please enter the course number you want for your schedule:");
                             String courseNumber = scanner.nextLine();
 
                             //Add new course into schedule
                             Course courses = FourYearSchedule.getSchedule(courseNumber);
 
+
                              System.out.println("Course added.");
                         }
 
+                        studentMenu(student);
                     }
 
                     break;
@@ -177,10 +179,12 @@ public class CLI {
                     selection = getSelection();
                 }
             }
+
             String newStudentName;
             GradeLevels gradeLevelSelected = null;
             String courseName;
             String courseNumber;
+
 
             switch (optionSelected) {
                 case REGISTER_STUDENT:
@@ -222,6 +226,7 @@ public class CLI {
                     courseNumber = scanner.nextLine();
 
                     logicFacade.addNewCourse(courseName,courseNumber);
+
                     break;
                 case BACK:
                     goBack = true;
@@ -233,12 +238,62 @@ public class CLI {
         }
     }
 
+    public void studentMenu(Student student) {
+        boolean goBack = false;
+        boolean validSelection;
+        int selection;
+        StudentOptions optionSelected = null;
+
+
+        while(!goBack) {
+            //Welcome message
+            System.out.println("\nWelcome " + logicFacade.getStudentName(student));
+            validSelection = false;
+
+            for (StudentOptions studentSelection : StudentOptions.values()) {
+                System.out.println((studentSelection.ordinal() + 1) + " - " + studentSelection.getDescription());
+            }
+            System.out.print("Please select an option: ");
+
+            selection = getSelection();
+            scanner.nextLine();
+
+            while (!validSelection) {
+                try {
+                    optionSelected = StudentOptions.values()[selection - 1];
+                    validSelection = true;
+                }
+                catch (ArrayIndexOutOfBoundsException a) {
+                    System.out.println("Invalid selection. Please enter a number from the menu above.");
+                    selection = getSelection();
+                }
+            }
+
+            switch (optionSelected) {
+                case EDIT_SCHEDULE:
+                    System.out.println("Edit schedule not yet implemented");
+                    break;
+                case ENTER_SCHEDULE:
+                    System.out.println("Enter schedule not yet implemented");
+                    break;
+                case BACK:
+                    goBack = true;
+                    break;
+                default:
+                    System.out.println("Not a valid option");
+                    break;
+            }
+
+        }
+
+    }
+
     enum MenuOptions {
         ADMIN_SIDE("Admin login"),
         STUDENT_SIDE("Student login"),
         EXIT("Exit");
 
-        private String description;
+        private final String description;
 
         MenuOptions(String description) {this.description = description;}
 
@@ -250,7 +305,7 @@ public class CLI {
         ADD_COURSE("Add new course"),
         BACK("Go back");
 
-        private String description;
+        private final String description;
 
         AdminOptions(String description) {this.description = description;}
 
@@ -263,10 +318,23 @@ public class CLI {
         JUNIOR("Junior"),
         SENIOR("Senior");
 
-        private String description;
+        private final String description;
 
         GradeLevels(String description) {this.description = description;}
 
         public  String getDescription() {return description;}
+    }
+
+
+    enum StudentOptions {
+        EDIT_SCHEDULE("Edit existing schedule"),
+        ENTER_SCHEDULE("Enter a schedule"),
+        BACK("Go back");
+
+        private final String description;
+
+        StudentOptions(String description) {this.description = description;}
+
+        public String getDescription() {return description;}
     }
 }
