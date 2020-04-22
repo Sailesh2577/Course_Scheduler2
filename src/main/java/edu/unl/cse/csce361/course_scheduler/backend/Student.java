@@ -70,7 +70,10 @@ public class Student extends User {
     }
 
     public String getUsername() {
-        return null;
+        if(username == null) {
+            return "N/A";
+        }
+        return username;
     }
 
     @Override

@@ -48,6 +48,7 @@ public class Backend {
     public void registerStudent(String newStudentName, String description) {
         Student student = new Student(newStudentName,description);
         writer.writeToFile("students.csv",student.toCsvFormat());
+        setAllStudents();
     }
 
     public void addNewCourse(String courseName, String courseNumber) {
