@@ -18,7 +18,7 @@ public class LogicFacade {
         return uniqueFacade = new LogicFacade();
     }
 
-    public static Admin getAdminUser(String inputName) {
+    public Admin getAdminUser(String inputName) {
         return backendFacade.getAdmin(inputName);
     }
 
