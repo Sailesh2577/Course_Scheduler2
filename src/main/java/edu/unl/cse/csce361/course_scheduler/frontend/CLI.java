@@ -22,6 +22,7 @@ public class CLI {
 
         logicFacade.setAllAdmins();
         logicFacade.setAllStudents();
+        logicFacade.setAllCourses();
 
         while (!exit) {
             validSelection = false;
@@ -231,6 +232,9 @@ public class CLI {
                 case BACK:
                     goBack = true;
                     break;
+                case SHOW_OPTIMIZED_SCHEDULE:
+                    logicFacade.showAdminSchedule();
+                    break;
                 default:
                     System.out.println("Whomp whomp");
                     break;
@@ -303,6 +307,7 @@ public class CLI {
     enum AdminOptions {
         REGISTER_STUDENT("Register a new student"),
         ADD_COURSE("Add new course"),
+        SHOW_OPTIMIZED_SCHEDULE("Show optimal schedule"),
         BACK("Go back");
 
         private final String description;

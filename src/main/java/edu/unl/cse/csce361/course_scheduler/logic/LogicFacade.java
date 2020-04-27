@@ -60,4 +60,12 @@ public class LogicFacade {
     public void setAllStudents() {
         backendFacade.setAllStudents();
     }
+
+    public void showAdminSchedule() {
+        backendFacade.showAdminSchedule();
+    }
+
+    public void setAllCourses() {
+        backendFacade.setAllCourses();
+    }
 }

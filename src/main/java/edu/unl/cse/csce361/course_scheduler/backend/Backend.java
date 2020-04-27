@@ -1,6 +1,8 @@
 package edu.unl.cse.csce361.course_scheduler.backend;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class Backend {
     private static Backend uniqueFacade;
@@ -89,5 +91,17 @@ public class Backend {
         }
         return false;
     }
+    public void setAllCourses() {
+        courses = FourYearSchedule.setAllCourses(reader.readFile("src/main/resources/csv/courses.csv"));
+    }
 
+    public void showAdminSchedule() {
+        List<FourYearSchedule> optimalSchedule = new ArrayList<FourYearSchedule>();
+        //TODO: Create methods to put together optimal schedule using grade level prioritization
+        //Replace below code with optimization method(s)
+        for (int i = 0; i < 8; ++i) {
+            optimalSchedule.add((FourYearSchedule) courses.toArray()[i]);
+        }
+        FourYearSchedule.printSchedule(optimalSchedule);
+    }
 }

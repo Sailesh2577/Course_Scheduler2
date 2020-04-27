@@ -13,7 +13,20 @@ public class FourYearSchedule extends Course {
             schedule.add(this);
         }
 
-        @Override
+    public static Collection<FourYearSchedule> setAllCourses(Collection<Map<String, String>> courseList) {
+            List<FourYearSchedule> courses = new ArrayList<>();
+            for (Map<String,String> map : courseList) {
+                courses.add(new FourYearSchedule(map.get("Name"),map.get("Course#")));
+            }
+        return courses;
+    }
+
+    public static void printSchedule(List<FourYearSchedule> optimalSchedule) {
+            //TODO: Finish print schedule option
+            System.out.println("This feature has not yet been implemented");
+    }
+
+    @Override
         public String getCourseName() {return courseName;}
 
         @Override
@@ -48,4 +61,4 @@ public class FourYearSchedule extends Course {
 
             return course;
         }
-    }
+}
