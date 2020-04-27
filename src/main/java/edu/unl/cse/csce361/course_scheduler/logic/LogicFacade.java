@@ -44,7 +44,8 @@ public class LogicFacade {
         backendFacade.addNewCourse(courseName,courseNumber);
     }
 
-    public boolean courseExistence(FourYearSchedule course, String courseNumber) {return backendFacade.checkCoursesExist(course,  courseNumber);}
+    public boolean courseExistence(FourYearSchedule course, String courseNumber) {return
+            backendFacade.checkCoursesExist(course,  courseNumber);}
 
     public String getCourseNumber(FourYearSchedule course) {return backendFacade.getCourseNumber(course);}
 
