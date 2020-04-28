@@ -57,4 +57,13 @@ style and running static analysis.
 
 ### Commit Messages
 
-n/5
+4.5/5
+
+```
+Commit 69c0a570 has 1 line too long.
+Commit 74e6ef0f has 1 line too long.
+Commit abe3626e has 1 line too long.
+Commit 5dcd33e5 has 1 line too long.
+Commit fefa295b has 1 line too long.
+Commit cce11e3c has 1 line too long.
+```
