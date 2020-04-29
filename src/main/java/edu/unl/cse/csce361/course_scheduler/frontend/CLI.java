@@ -86,7 +86,6 @@ public class CLI {
 
                         //Student record with inputted student id does exist
                     } else {
-
                         studentMenu(student);
                     }
 
@@ -245,14 +244,38 @@ public class CLI {
                 }
             }
 
+            String courseNumber;
+
             switch (optionSelected) {
                 case EDIT_SCHEDULE:
-                    System.out.println("Edit schedule not yet implemented");
+                    System.out.println("Here is your schedule.");
+                    System.out.println();  //Get student schedule
+
+                    System.out.println("1 - Add Course");
+                    System.out.println("2 - Drop Course");
+                    System.out.println("3 - Go Back");
+                    System.out.println("Please select an option:");
+                    int editScheduleOption = scanner.nextInt();
+
+                    if (editScheduleOption == 1) {
+                        System.out.println("Please state the course number that you want to add:");
+                        courseNumber = scanner.nextLine();
+                    }
+
+                    else if(editScheduleOption == 2) {
+                        System.out.println("Please state the course number that you want to drop:");
+                        courseNumber = scanner.nextLine();
+                    }
+
+                    else {
+                        goBack = true;
+                    }
+
                     break;
                 case ENTER_SCHEDULE:
                     //Enter schedule
                     System.out.println("Please enter the course number you want for your schedule:");
-                    String courseNumber = scanner.nextLine();
+                    courseNumber = scanner.nextLine();
 
                     //Add new course into schedule
                     Course courses = FourYearSchedule.getSchedule(courseNumber);
