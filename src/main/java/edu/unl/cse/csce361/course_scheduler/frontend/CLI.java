@@ -217,7 +217,9 @@ public class CLI {
         boolean goBack = false;
         boolean validSelection;
         int selection;
+        String courseNumber;
         StudentOptions optionSelected = null;
+        Scanner scanner1 = new Scanner(System.in);
 
 
         while(!goBack) {
@@ -244,8 +246,6 @@ public class CLI {
                 }
             }
 
-            String courseNumber;
-
             switch (optionSelected) {
                 case EDIT_SCHEDULE:
                     System.out.println("Here is your schedule.");
@@ -254,17 +254,17 @@ public class CLI {
                     System.out.println("1 - Add Course");
                     System.out.println("2 - Drop Course");
                     System.out.println("3 - Go Back");
-                    System.out.println("Please select an option:");
+                    System.out.println("Please select an option for your schedule:");
                     int editScheduleOption = scanner.nextInt();
 
                     if (editScheduleOption == 1) {
-                        System.out.println("Please state the course number that you want to add:");
-                        courseNumber = scanner.nextLine();
+                        System.out.println("Please state the course number that you want to add to your schedule:");
+                        courseNumber = scanner1.nextLine();
                     }
 
                     else if(editScheduleOption == 2) {
-                        System.out.println("Please state the course number that you want to drop:");
-                        courseNumber = scanner.nextLine();
+                        System.out.println("Please state the course number that you want to drop from your schedule:");
+                        courseNumber = scanner1.nextLine();
                     }
 
                     else {
