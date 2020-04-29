@@ -56,6 +56,13 @@ public class Backend {
         writer.writeToFile("courses.csv", (courseName + ", " + courseNumber));
     }
 
+    public boolean verifyStudent(Student student, String studentId) {
+        if(student != null) {
+            return (student.getId().equals(studentId));
+        }
+        return false;
+    }
+
     public void setAllStudents() {
         students = (Student.setAllStudents(reader.readFile("src/main/resources/csv/students.csv")));
     }

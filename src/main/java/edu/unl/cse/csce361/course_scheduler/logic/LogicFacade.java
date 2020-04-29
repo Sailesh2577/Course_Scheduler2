@@ -44,9 +44,11 @@ public class LogicFacade {
         backendFacade.addNewCourse(courseName,courseNumber);
     }
 
-    public boolean courseExistence(FourYearSchedule course, String courseNumber) {return backendFacade.checkCoursesExist(course,  courseNumber);}
+    public boolean courseExistence(FourYearSchedule course, String courseNumber) {return backendFacade.checkCoursesExist(course,  courseNumber); }
 
-    public String getCourseNumber(FourYearSchedule course) {return backendFacade.getCourseNumber(course);}
+    public String getCourseNumber(FourYearSchedule course) {return backendFacade.getCourseNumber(course); }
+
+    public boolean studentLogin(Student student, String studentId) { return backendFacade.verifyStudent(student, studentId); }
 
     public Student getStudent(String name, String id) {
         return backendFacade.getStudent(name, id);
