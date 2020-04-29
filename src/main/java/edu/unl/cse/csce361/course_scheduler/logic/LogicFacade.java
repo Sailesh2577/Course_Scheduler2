@@ -5,6 +5,8 @@ import edu.unl.cse.csce361.course_scheduler.backend.Backend;
 import edu.unl.cse.csce361.course_scheduler.backend.FourYearSchedule;
 import edu.unl.cse.csce361.course_scheduler.backend.Student;
 
+import java.util.Collection;
+
 public class LogicFacade {
     private static LogicFacade uniqueFacade;
     private static Backend backendFacade;
@@ -44,7 +46,8 @@ public class LogicFacade {
         backendFacade.addNewCourse(courseName,courseNumber);
     }
 
-    public boolean courseExistence(FourYearSchedule course, String courseNumber) {return backendFacade.checkCoursesExist(course,  courseNumber); }
+    public boolean courseExistence(FourYearSchedule course, String courseNumber) {return
+            backendFacade.checkCoursesExist(course,  courseNumber);}
 
     public String getCourseNumber(FourYearSchedule course) {return backendFacade.getCourseNumber(course); }
 
@@ -62,4 +65,9 @@ public class LogicFacade {
     public void setAllStudents() {
         backendFacade.setAllStudents();
     }
+
+    public Collection<Student> getStudents() {
+        return backendFacade.getStudents();
+    }
+
 }

@@ -67,6 +67,10 @@ public class Backend {
         students = (Student.setAllStudents(reader.readFile("src/main/resources/csv/students.csv")));
     }
 
+    public Collection<Student> getStudents() {
+        return students;
+    }
+
     public Student getStudent(String name, String id) {
         for(Student student: students) {
             if(student.getName().equals(name) && student.getId().equals(id)) {
