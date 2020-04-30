@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.course_scheduler.backend;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Schedule {
@@ -8,12 +9,16 @@ public class Schedule {
     //plan to take
     private static ArrayList<Map<String, Courses>> schedule = new ArrayList<>();
 
-    public void addCourse(Map<String, Courses> course) {
-        schedule.add(course);
+    public void addCourse(String semester, Courses course) {
+        Map<String, Courses> semesterCourse = new HashMap<>();
+        semesterCourse.put(semester, course);
+        schedule.add(semesterCourse);
     }
 
-    public void deleteCourse(Map<String, Courses> course) {
-        schedule.remove(course);
+    public void deleteCourse(String semester, Courses course) {
+        Map<String, Courses> semesterCourse = new HashMap<>();
+        semesterCourse.put(semester, course);
+        schedule.remove(semesterCourse);
     }
 
     public ArrayList<Map<String, Courses>> getSchedule() {
