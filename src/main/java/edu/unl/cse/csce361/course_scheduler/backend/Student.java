@@ -7,7 +7,7 @@ public class Student extends User {
     private String studentId;
     private String gradeLevel;
     private String username;
-    private FourYearSchedule schedule;
+    private Schedule schedule = new Schedule();
     private static ArrayList<Student> students = new ArrayList<>();
 
 
@@ -96,7 +96,7 @@ public class Student extends User {
         return students;
     }
 
-    public FourYearSchedule getSchedule() {
+    public Schedule getSchedule() {
         return schedule;
     }
 

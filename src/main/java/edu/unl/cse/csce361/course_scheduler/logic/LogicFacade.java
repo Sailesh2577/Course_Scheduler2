@@ -1,9 +1,6 @@
 package edu.unl.cse.csce361.course_scheduler.logic;
 
-import edu.unl.cse.csce361.course_scheduler.backend.Admin;
-import edu.unl.cse.csce361.course_scheduler.backend.Backend;
-import edu.unl.cse.csce361.course_scheduler.backend.FourYearSchedule;
-import edu.unl.cse.csce361.course_scheduler.backend.Student;
+import edu.unl.cse.csce361.course_scheduler.backend.*;
 
 import java.util.Collection;
 
@@ -66,6 +63,18 @@ public class LogicFacade {
 
     public Collection<Student> getStudents() {
         return backendFacade.getStudents();
+    }
+
+    public void setAllCourses() {
+        backendFacade.setAllCourses();
+    }
+
+    public Collection<Courses> getCourses() {
+        return backendFacade.getCourses();
+    }
+
+    public Courses getCourse(String name, String departmentCode, String courseNumber) {
+        return backendFacade.getCourse(name, departmentCode, courseNumber);
     }
 
 }
