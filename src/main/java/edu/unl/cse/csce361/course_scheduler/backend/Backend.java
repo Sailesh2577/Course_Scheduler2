@@ -84,14 +84,6 @@ public class Backend {
         return student.getName();
     }
 
-    public String getAddCourseToSchedule(String addCourse) {
-        return addCourse;
-    }
-
-    public String getDropCourseFromSchedule(String deleteCourse) {
-        return deleteCourse;
-    }
-
     /*public Collection<FourYearSchedule> getCourses() {
         return courses;
     }*/
@@ -155,6 +147,15 @@ public class Backend {
         else {
             return false;
         }
+    }
+
+    public boolean dropCourse(Student student, String courseNumber) {
+        if(findCourseByNumber(courseNumber) != null) {
+            student.getSchedule().deleteCourse(student.getSchedule().getNextSemester(), findCourseByNumber(courseNumber));
+            writer.writeToFile(student.getScheduleFilename(), findCourseByNumber(courseNumber).toCsvFormat());
+            return true;
+        }
+        return false;
     }
 
 

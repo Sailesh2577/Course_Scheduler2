@@ -68,10 +68,6 @@ public class LogicFacade {
         return backendFacade.getStudents();
     }
 
-    public String getCourseAdded(String schedule) { return backendFacade.getAddCourseToSchedule(schedule); }
-
-    public String getCourseDropped(String schedule) { return backendFacade.getDropCourseFromSchedule(schedule); }
-
 //    public boolean studentExistence(Student student, Courses courses) {
 //        return backendFacade.checkStudentExist(student);
 //    }
@@ -94,6 +90,10 @@ public class LogicFacade {
 
     public boolean addCourse(Student student, String courseNumber) {
         return backendFacade.addCourse(student,courseNumber);
+    }
+
+    public boolean dropCourse(Student student, String courseNumber) {
+        return  backendFacade.dropCourse(student, courseNumber);
     }
 
     public void updateStudentSchedules() {
