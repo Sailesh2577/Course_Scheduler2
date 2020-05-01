@@ -9,6 +9,7 @@ public class Admin extends User {
     private final String name;
     private final String id;
     private final String username;
+    private Schedule optimalSchedule;
 
     public Admin(String name, String username, String id) {
         this.name = name;

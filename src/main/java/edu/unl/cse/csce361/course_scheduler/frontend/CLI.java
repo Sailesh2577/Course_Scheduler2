@@ -19,6 +19,7 @@ public class CLI {
         logicFacade.setAllAdmins();
         logicFacade.setAllStudents();
         logicFacade.setAllCourses();
+        logicFacade.updateStudentSchedules();
 
         while (!exit) {
             validSelection = false;
@@ -155,6 +156,7 @@ public class CLI {
             String newStudentName;
             GradeLevels gradeLevelSelected = null;
             String courseName;
+            String departmentId;
             String courseNumber;
 
 
@@ -194,14 +196,21 @@ public class CLI {
                     courseName = scanner.nextLine();
 
                     System.out.println();
-                    System.out.println("Please enter course department code and number (Use format 'XXXX 000')");
+                    System.out.println("Please enter course department code: ");
                     courseNumber = scanner.nextLine();
 
-                    logicFacade.addNewCourse(courseName,courseNumber);
+                    System.out.println();
+                    System.out.println("Please enter course number: ");
+                    departmentId = scanner.nextLine();
+
+                    logicFacade.addNewCourse(courseName,departmentId,courseNumber);
 
                     break;
                 case BACK:
                     goBack = true;
+                    break;
+                case SHOW_OPTIMIZED_SCHEDULE:
+                    logicFacade.showAdminSchedule();
                     break;
                 default:
                     System.out.println("Whomp whomp");
@@ -279,9 +288,15 @@ public class CLI {
                     courseNumber = scanner.nextLine();
 
                     //Add new course into schedule
-                    Course courses = FourYearSchedule.getSchedule(courseNumber);
-
-                    System.out.println("Course added.");
+                    if (logicFacade.addCourse(student, courseNumber)) {
+                        System.out.println("Course added.");
+                    }
+                    else {
+                        System.out.println("No such course. Course not added.");
+                    }
+                    break;
+                case VIEW_SCHEDULE:
+                    logicFacade.printSchedule(student.getSchedule());
                     break;
                 case BACK:
                     goBack = true;
@@ -310,6 +325,7 @@ public class CLI {
     enum AdminOptions {
         REGISTER_STUDENT("Register a new student"),
         ADD_COURSE("Add new course"),
+        SHOW_OPTIMIZED_SCHEDULE("Show optimal schedule"),
         BACK("Go back");
 
         private final String description;
@@ -336,6 +352,7 @@ public class CLI {
     enum StudentOptions {
         EDIT_SCHEDULE("Edit existing schedule"),
         ENTER_SCHEDULE("Enter a schedule"),
+        VIEW_SCHEDULE("View current schedule"),
         BACK("Go back");
 
         private final String description;

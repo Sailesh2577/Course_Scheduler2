@@ -41,5 +41,7 @@ public class Courses {
         return courses;
     }
 
-
+    public String toCsvFormat() {
+        return (name + "," + departmentCode + "," + courseNumber);
+    }
 }

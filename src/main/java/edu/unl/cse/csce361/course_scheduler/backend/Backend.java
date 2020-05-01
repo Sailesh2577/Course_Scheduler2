@@ -2,6 +2,8 @@ package edu.unl.cse.csce361.course_scheduler.backend;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 public class Backend {
     private static Backend uniqueFacade;
@@ -12,6 +14,7 @@ public class Backend {
     private ArrayList<Courses> courseList;
     private final CsvReader reader;
     private final CsvWriter writer;
+    private final String NEW_SCHEDULE = "Semester,Name,Department Code,Course Number";
 
     public Backend() {
         reader = new CsvReader();
@@ -52,11 +55,12 @@ public class Backend {
     public void registerStudent(String newStudentName, String description) {
         Student student = new Student(newStudentName,description);
         writer.writeToFile("students.csv",student.toCsvFormat());
+        writer.writeNewFile(student.getScheduleFilename(),NEW_SCHEDULE);
         setAllStudents();
     }
 
-    public void addNewCourse(String courseName, String courseNumber) {
-        writer.writeToFile("courses.csv", (courseName + ", " + courseNumber));
+    public void addNewCourse(String name, String id, String num) {
+        writer.writeToFile("courses.csv", (name + ", " + id + "," + num));
     }
 
     public void setAllStudents() {
@@ -133,4 +137,47 @@ public class Backend {
         return null;
     }
 
+    public void showAdminSchedule() {
+        OptimizedSchedule optimalSchedule = new OptimizedSchedule(students);
+        optimalSchedule.printSchedule();
+    }
+
+    public void printSchedule(Schedule schedule) {
+        schedule.printSchedule();
+    }
+
+    public boolean addCourse(Student student, String courseNumber) {
+        if (findCourseByNumber(courseNumber) != null) {
+            student.getSchedule().addCourse(student.getSchedule().getNextSemester(),findCourseByNumber(courseNumber));
+            writer.writeToFile(student.getScheduleFilename(),findCourseByNumber(courseNumber).toCsvFormat());
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+    private Courses findCourseByNumber(String courseNumber) {
+        for (Courses course : courses) {
+            if (course.getCourseNumber().equals(courseNumber)) {
+                return course;
+            }
+        }
+        return null;
+    }
+
+    public void updateStudentSchedules() {
+        for (Student student : students) {
+            String filename = "src/main/resources/csv/schedules/" + student.getId() + "_schedule.csv";
+            Collection<Map<String,String>> readSchedule = reader.readFile(filename);
+
+            if (readSchedule != null) {
+                student.setSchedule(new Schedule(readSchedule));
+            }
+            else {
+                writer.writeNewFile(student.getScheduleFilename(),NEW_SCHEDULE);
+            }
+        }
+    }
 }

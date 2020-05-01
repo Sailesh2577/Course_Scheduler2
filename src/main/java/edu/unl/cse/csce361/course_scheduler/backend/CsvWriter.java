@@ -22,4 +22,19 @@ public class CsvWriter {
 
 
     }
+
+    public void writeNewFile(String newFilename, String new_schedule) {
+        newFilename = "src/main/resources/csv/" + newFilename;
+
+        try {
+            FileWriter filewriter = new FileWriter(newFilename, true);
+            BufferedWriter out = new BufferedWriter(filewriter);
+            out.append(new_schedule);
+            out.flush();
+            out.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

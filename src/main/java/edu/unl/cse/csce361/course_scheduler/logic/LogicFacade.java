@@ -39,8 +39,8 @@ public class LogicFacade {
         backendFacade.registerStudent(newStudentName,description);
     }
 
-    public void addNewCourse(String courseName, String courseNumber) {
-        backendFacade.addNewCourse(courseName,courseNumber);
+    public void addNewCourse(String name, String id, String num) {
+        backendFacade.addNewCourse(name,id,num);
     }
 
     public boolean courseExistence(Courses course, String courseNumber) {return
@@ -58,6 +58,10 @@ public class LogicFacade {
 
     public void setAllStudents() {
         backendFacade.setAllStudents();
+    }
+
+    public void showAdminSchedule() {
+        backendFacade.showAdminSchedule();
     }
 
     public Collection<Student> getStudents() {
@@ -84,4 +88,15 @@ public class LogicFacade {
         return backendFacade.getCourse(name, departmentCode, courseNumber);
     }
 
+    public void printSchedule(Schedule schedule) {
+        backendFacade.printSchedule(schedule);
+    }
+
+    public boolean addCourse(Student student, String courseNumber) {
+        return backendFacade.addCourse(student,courseNumber);
+    }
+
+    public void updateStudentSchedules() {
+        backendFacade.updateStudentSchedules();
+    }
 }
