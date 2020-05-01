@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.course_scheduler.frontend;
 
 import edu.unl.cse.csce361.course_scheduler.backend.Student;
+import edu.unl.cse.csce361.course_scheduler.backend.Course;
 import edu.unl.cse.csce361.course_scheduler.logic.LogicFacade;
 
 import java.util.InputMismatchException;
@@ -243,19 +244,42 @@ public class CLI {
             }
 
             switch (optionSelected) {
-                case EDIT_SCHEDULE:
-                    System.out.println("Edit schedule not yet implemented");
-                    break;
-                case ENTER_SCHEDULE:
-                    System.out.println("Enter schedule not yet implemented");
-                    break;
-                case BACK:
-                    goBack = true;
-                    break;
-                default:
-                    System.out.println("Not a valid option");
-                    break;
+                    case EDIT_SCHEDULE:
+                        System.out.println("Edit schedule not yet implemented");
+                        //selection = getSelection();
+                        scanner.nextLine();
+                        break;
+                    case ENTER_SCHEDULE:
+                        //System.out.println("Enter schedule not yet implemented");
+                        System.out.println();
+                        System.out.println("Enter your id: ");
+                        String enterId = scanner.nextLine();
+                        for( Course course: logicFacade.getAllCourses() ){
+                            System.out.println( "Name: "+course.getCourseName()+ " Number: "+ course.getCourseNumber());
+                        }
+                        break;
+                    case BACK:
+                        goBack = true;
+                        break;
+                    default:
+                        System.out.println("Not a valid option");
+                        break;
             }
+
+
+
+//            switch (optionSelected) {
+//                case ENTER_ID:
+//                    System.out.println("Id is incorrect");
+//                    scanner.nextLine();
+//                    break;
+//                case BACK:
+//                    goBack = true;
+//                    break;
+//                default:
+//                    System.out.println("Not a valid option");
+//                    break;
+//            }
 
         }
 
@@ -310,4 +334,17 @@ public class CLI {
 
         public String getDescription() {return description;}
     }
+
+//    enum StudentSchedule {
+//        ENTER_ID( "Enter ID"),
+//        BACK("Go Back");
+//
+//        private final String description;
+//
+//        StudentSchedule(String description) {this.description = description;}
+//
+//        public String getDescription() {return description;}
+//    }
 }
+
+

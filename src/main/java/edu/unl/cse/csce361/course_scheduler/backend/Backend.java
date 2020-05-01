@@ -6,6 +6,7 @@ public class Backend {
     private static Backend uniqueFacade;
     private Collection<Admin> admins;
     private Collection<Student> students;
+    private Collection<Course> courses;
     private final CsvReader reader;
     private final CsvWriter writer;
 
@@ -59,6 +60,13 @@ public class Backend {
         students = (Student.setAllStudents(reader.readFile("src/main/resources/csv/students.csv")));
     }
 
+    public void setAllCourses() {
+        courses = (Course.setAllCourses(reader.readFile("src/main/resources/csv/courses.csv")));
+    }
+
+    public Collection<Course> getAllCourses(){
+            return courses;
+    }
     public Student getStudent(String name, String id) {
         for(Student student: students) {
             if(student.getName().equals(name) && student.getId().equals(id)) {
