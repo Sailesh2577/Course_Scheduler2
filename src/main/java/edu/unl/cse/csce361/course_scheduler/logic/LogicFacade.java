@@ -81,4 +81,15 @@ public class LogicFacade {
         return backendFacade.getCourse(name, departmentCode, courseNumber);
     }
 
+    public void setStudentSchedule(Student student) {
+        backendFacade.setStudentSchedule(student);
+    }
+
+    public void printSchedule(Schedule schedule) {
+        backendFacade.printSchedule(schedule);
+    }
+
+    public boolean addCourse(Student student, String courseNumber) {
+        return backendFacade.addCourse(student,courseNumber);
+    }
 }

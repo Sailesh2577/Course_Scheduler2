@@ -214,6 +214,7 @@ public class CLI {
     }
 
     public void studentMenu(Student student) {
+        logicFacade.setStudentSchedule(student);
         boolean goBack = false;
         boolean validSelection;
         int selection;
@@ -254,9 +255,15 @@ public class CLI {
                     String courseNumber = scanner.nextLine();
 
                     //Add new course into schedule
-                    Course courses = FourYearSchedule.getSchedule(courseNumber);
-
-                    System.out.println("Course added.");
+                    if (logicFacade.addCourse(student, courseNumber)) {
+                        System.out.println("Course added.");
+                    }
+                    else {
+                        System.out.println("No such course. Course not added.");
+                    }
+                    break;
+                case VIEW_SCHEDULE:
+                    logicFacade.printSchedule(student.getSchedule());
                     break;
                 case BACK:
                     goBack = true;
@@ -312,6 +319,7 @@ public class CLI {
     enum StudentOptions {
         EDIT_SCHEDULE("Edit existing schedule"),
         ENTER_SCHEDULE("Enter a schedule"),
+        VIEW_SCHEDULE("View current schedule"),
         BACK("Go back");
 
         private final String description;

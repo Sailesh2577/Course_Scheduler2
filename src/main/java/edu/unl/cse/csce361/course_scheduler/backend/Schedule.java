@@ -7,8 +7,16 @@ public class Schedule {
     //plan to take
     private static ArrayList<Map<String, Courses>> schedule = new ArrayList<>();
 
+    public Schedule(Collection<Map<String, String>> studentCourses) {
+        for (Map<String,String> map : studentCourses) {
+            Courses course = new Courses(map.get("Name"),map.get("Department Code"),map.get("Course Number"));
+            Map addMap = new HashMap();
+            addMap.put(map.get("Semester"),course);
+            schedule.add(addMap);
+        }
+    }
     //String semester should be in the format of "Semester #"
-    public void addCourse(String semester, Courses course) {
+    public static void addCourse(String semester, Courses course) {
         Map<String, Courses> semesterCourse = new HashMap<>();
         semesterCourse.put(semester, course);
         schedule.add(semesterCourse);
@@ -34,5 +42,24 @@ public class Schedule {
     }
 
 
+    public String getNextSemester() {
+        Map<String,Courses> lastScheduledSemester = schedule.get(schedule.size() - 1);
+        String[] thisSemester = null;
+        String nextSemester;
 
+        for (Map.Entry<String,Courses> indivMap : lastScheduledSemester.entrySet()) {
+            thisSemester = indivMap.getKey().split(" ");
+        }
+
+        int year = Integer.parseInt(thisSemester[1]);
+
+        if (thisSemester[0].equals("Fall")) {
+            nextSemester = "Spring";
+            ++year;
+        }
+        else {
+            nextSemester = "Fall";
+        }
+        return (nextSemester + " " + year);
+    }
 }

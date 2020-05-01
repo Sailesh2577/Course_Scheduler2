@@ -118,4 +118,34 @@ public class Backend {
         OptimizedSchedule optimalSchedule = new OptimizedSchedule(students);
         optimalSchedule.printSchedule();
     }
+
+    public void setStudentSchedule(Student student) {
+        String filename = "src/main/resources/csv/schedules/" + student.getId() + "_schedule.csv";
+        student.setSchedule(new Schedule(reader.readFile(filename)));
+    }
+
+    public void printSchedule(Schedule schedule) {
+        schedule.printSchedule();
+    }
+
+    public boolean addCourse(Student student, String courseNumber) {
+        if (findCourseByNumber(courseNumber) != null) {
+            student.getSchedule().addCourse(student.getSchedule().getNextSemester(),findCourseByNumber(courseNumber));
+            writer.writeToFile(student.getScheduleFilename(),findCourseByNumber(courseNumber).toCsvFormat());
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+    private Courses findCourseByNumber(String courseNumber) {
+        for (Courses course : courses) {
+            if (course.getCourseNumber().equals(courseNumber)) {
+                return course;
+            }
+        }
+        return null;
+    }
 }

@@ -102,7 +102,12 @@ public class OptimizedSchedule {
         for (Map<String,Courses> map : schedule) {
             for (Map.Entry<String,Courses> indivMap : map.entrySet()) {
                 System.out.println("Semester: " + indivMap.getKey());
-                System.out.println(" - " + indivMap.getValue().toString());
+                if (indivMap.getValue() != null) {
+                    System.out.println("   - " + indivMap.getValue().toString());
+                }
+                else {
+                    System.out.println("   - null");
+                }
                 System.out.println();
 
             }
