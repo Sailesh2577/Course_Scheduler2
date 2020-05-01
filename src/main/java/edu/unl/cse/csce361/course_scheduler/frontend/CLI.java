@@ -257,11 +257,15 @@ public class CLI {
                     if (editScheduleOption == 1) {
                         System.out.println("Please enter the course number that you want to add to your schedule:");
                         courseNumber = scanner1.nextLine();
+
+                        logicFacade.getCourseAdded(courseNumber);
                     }
 
                     else if(editScheduleOption == 2) {
                         System.out.println("Please enter the course number that you want to drop from your schedule:");
                         courseNumber = scanner1.nextLine();
+
+                        logicFacade.getCourseDropped(courseNumber);
                     }
 
                     else {

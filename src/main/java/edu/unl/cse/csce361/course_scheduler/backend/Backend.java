@@ -1,5 +1,6 @@
 package edu.unl.cse.csce361.course_scheduler.backend;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Backend {
@@ -7,6 +8,8 @@ public class Backend {
     private Collection<Admin> admins;
     private Collection<Student> students;
     private Collection<Courses> courses;
+    private ArrayList<Student> studentList;
+    private ArrayList<Courses> courseList;
     private final CsvReader reader;
     private final CsvWriter writer;
 
@@ -77,15 +80,33 @@ public class Backend {
         return student.getName();
     }
 
+    public String getAddCourseToSchedule(String addCourse) {
+        return addCourse;
+    }
+
+    public String getDropCourseFromSchedule(String deleteCourse) {
+        return deleteCourse;
+    }
+
     /*public Collection<FourYearSchedule> getCourses() {
         return courses;
     }*/
 
-    public String getCourseNumber(FourYearSchedule course) {
+//    public boolean checkStudentExist(Student student, Courses courses){
+//        if(student != null){
+//            if(studentList.contains(student) == courseList.contains(student)){
+//
+//            }
+//        }
+//        studentList.add(student);
+//        return true;
+//    }
+
+    public String getCourseNumber(Courses course) {
         return course.getCourseNumber();
     }
 
-    public boolean checkCoursesExist(FourYearSchedule course, String courseNumber) {
+    public boolean checkCoursesExist(Courses course, String courseNumber) {
         if(course != null) {
             if(course.getCourseNumber().equals(courseNumber)) {
                 return true;
