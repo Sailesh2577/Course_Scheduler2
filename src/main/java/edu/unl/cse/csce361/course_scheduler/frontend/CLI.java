@@ -269,6 +269,8 @@ public class CLI {
 
                         logicFacade.addCourse(student, courseNumber);
                         logicFacade.updateStudentSchedules();
+
+                        System.out.println("Course successfully added.");
                     }
 
                     else if(editScheduleOption == 2) {
@@ -277,6 +279,8 @@ public class CLI {
 
                         logicFacade.dropCourse(student, courseNumber);
                         logicFacade.updateStudentSchedules();
+
+                        System.out.println("Course successfully dropped.");
                     }
 
                     else {
