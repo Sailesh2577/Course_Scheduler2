@@ -1,9 +1,6 @@
 package edu.unl.cse.csce361.course_scheduler.backend;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class Schedule {
     //List of Maps that are String, Courses pair in which the string is the Semester and Courses is the course they
@@ -35,5 +32,7 @@ public class Schedule {
             System.out.println(course.toString());
         }
     }
+
+
 
 }

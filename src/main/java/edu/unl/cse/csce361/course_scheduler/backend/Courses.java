@@ -40,6 +40,4 @@ public class Courses {
         }
         return courses;
     }
-
-
 }

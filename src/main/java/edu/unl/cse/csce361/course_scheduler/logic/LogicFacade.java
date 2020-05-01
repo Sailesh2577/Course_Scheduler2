@@ -65,10 +65,6 @@ public class LogicFacade {
         backendFacade.showAdminSchedule();
     }
 
-    public void setAllCourses() {
-        backendFacade.setAllCourses();
-    }
-
     public Collection<Student> getStudents() {
         return backendFacade.getStudents();
     }

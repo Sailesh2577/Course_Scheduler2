@@ -115,12 +115,7 @@ public class Backend {
     }
 
     public void showAdminSchedule() {
-        List<FourYearSchedule> optimalSchedule = new ArrayList<>();
-        //TODO: Create methods to put together optimal schedule using grade level prioritization
-        //Replace below code with optimization method(s)
-        for (int i = 0; i < 8; ++i) {
-            optimalSchedule.add((FourYearSchedule) courses.toArray()[i]);
-        }
-        FourYearSchedule.printAdminSchedule(optimalSchedule);
+        OptimizedSchedule optimalSchedule = new OptimizedSchedule(students);
+        optimalSchedule.printSchedule();
     }
 }

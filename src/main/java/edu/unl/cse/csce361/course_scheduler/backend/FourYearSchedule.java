@@ -21,34 +21,6 @@ public class FourYearSchedule extends Course {
         return courses;
     }
 
-    public static void printAdminSchedule(List<FourYearSchedule> optimalSchedule) {
-            Calendar calendar = GregorianCalendar.getInstance(Locale.US);
-            int currentYear = calendar.get(Calendar.YEAR);
-            String semester = "";
-
-            //0-7 will count as spring semester, there is no summer semester for now
-            if ((calendar.get(Calendar.MONTH) + 1) < 7) {
-                semester = "Spring";
-            }
-            else {
-                semester = "Fall";
-            }
-
-            System.out.println();
-            for (FourYearSchedule course: optimalSchedule) {
-                System.out.println("Semester: " + semester + " " + currentYear);
-                System.out.println(" - " + course.toString());
-                System.out.println();
-                if (semester.equals("Fall")) {
-                    semester = "Spring";
-                    ++currentYear;
-                }
-                else {
-                    semester = "Fall";
-                }
-            }
-        }
-
     @Override
         public String getCourseName() {return courseName;}
 
