@@ -1,13 +1,9 @@
 package edu.unl.cse.csce361.course_scheduler.frontend;
 
-import edu.unl.cse.csce361.course_scheduler.backend.Course;
-import edu.unl.cse.csce361.course_scheduler.backend.FourYearSchedule;
-import edu.unl.cse.csce361.course_scheduler.backend.Student;
+import edu.unl.cse.csce361.course_scheduler.backend.*;
 import edu.unl.cse.csce361.course_scheduler.logic.LogicFacade;
 
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 public class CLI {
     private Scanner scanner;
@@ -87,31 +83,6 @@ public class CLI {
 
                         //Student record with inputted student id does exist
                     } else {
-
-                        //Welcome message
-                        System.out.println("Welcome " + student.getName());
-
-                        //Prompt the user to enter an option of either editing schedule or entering schedule
-                        System.out.println("1 - Edit Schedule");
-                        System.out.println("2 - Enter Schedule");
-                        System.out.println("Please select an option:");
-                        int scheduleOption = scanner.nextInt();
-
-                        if(scheduleOption == 1) {
-                            //Editing schedule
-                            System.out.println("Not yet implemented");
-                        } else if(scheduleOption == 2) {
-                            //Enter schedule
-                            System.out.println("Please enter the course number you want for your schedule:");
-                            String courseNumber = scanner.nextLine();
-
-                            //Add new course into schedule
-                            Course courses = FourYearSchedule.getSchedule(courseNumber);
-
-
-                             System.out.println("Course added.");
-                        }
-
                         studentMenu(student);
                     }
 
@@ -278,7 +249,14 @@ public class CLI {
                     System.out.println("Edit schedule not yet implemented");
                     break;
                 case ENTER_SCHEDULE:
-                    System.out.println("Enter schedule not yet implemented");
+                    //Enter schedule
+                    System.out.println("Please enter the course number you want for your schedule:");
+                    String courseNumber = scanner.nextLine();
+
+                    //Add new course into schedule
+                    Course courses = FourYearSchedule.getSchedule(courseNumber);
+
+                    System.out.println("Course added.");
                     break;
                 case BACK:
                     goBack = true;

@@ -8,7 +8,7 @@ public class Backend {
     private static Backend uniqueFacade;
     private Collection<Admin> admins;
     private Collection<Student> students;
-    private Collection<FourYearSchedule> courses;
+    private Collection<Courses> courses;
     private final CsvReader reader;
     private final CsvWriter writer;
 
@@ -62,6 +62,10 @@ public class Backend {
         students = (Student.setAllStudents(reader.readFile("src/main/resources/csv/students.csv")));
     }
 
+    public Collection<Student> getStudents() {
+        return students;
+    }
+
     public Student getStudent(String name, String id) {
         for(Student student: students) {
             if(student.getName().equals(name) && student.getId().equals(id)) {
@@ -75,9 +79,9 @@ public class Backend {
         return student.getName();
     }
 
-    public Collection<FourYearSchedule> getCourses() {
+    /*public Collection<FourYearSchedule> getCourses() {
         return courses;
-    }
+    }*/
 
     public String getCourseNumber(FourYearSchedule course) {
         return course.getCourseNumber();
@@ -91,8 +95,23 @@ public class Backend {
         }
         return false;
     }
+
     public void setAllCourses() {
-        courses = FourYearSchedule.setAllCourses(reader.readFile("src/main/resources/csv/courses.csv"));
+        courses = (Courses.setAllCourses(reader.readFile("src/main/resources/csv/courses.csv")));
+    }
+
+    public Collection<Courses> getCourses() {
+        return courses;
+    }
+
+    public Courses getCourse(String name, String departmentCode, String courseNumber) {
+        for(Courses course: courses) {
+            if(course.getName().equals(name) && course.getDepartmentCode().equals(departmentCode) &&
+                    course.getCourseNumber().equals(courseNumber)) {
+                return course;
+            }
+        }
+        return null;
     }
 
     public void showAdminSchedule() {
