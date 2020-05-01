@@ -6,7 +6,7 @@ public class Backend {
     private static Backend uniqueFacade;
     private Collection<Admin> admins;
     private Collection<Student> students;
-    private Collection<Course> courses;
+    private Collection<Courses> courses;
     private final CsvReader reader;
     private final CsvWriter writer;
 
@@ -60,13 +60,10 @@ public class Backend {
         students = (Student.setAllStudents(reader.readFile("src/main/resources/csv/students.csv")));
     }
 
-    public void setAllCourses() {
-        courses = (Course.setAllCourses(reader.readFile("src/main/resources/csv/courses.csv")));
+    public Collection<Student> getStudents() {
+        return students;
     }
 
-    public Collection<Course> getAllCourses(){
-            return courses;
-    }
     public Student getStudent(String name, String id) {
         for(Student student: students) {
             if(student.getName().equals(name) && student.getId().equals(id)) {
@@ -79,4 +76,40 @@ public class Backend {
     public String getStudentName(Student student) {
         return student.getName();
     }
+
+    /*public Collection<FourYearSchedule> getCourses() {
+        return courses;
+    }*/
+
+    public String getCourseNumber(FourYearSchedule course) {
+        return course.getCourseNumber();
+    }
+
+    public boolean checkCoursesExist(FourYearSchedule course, String courseNumber) {
+        if(course != null) {
+            if(course.getCourseNumber().equals(courseNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void setAllCourses() {
+        courses = (Courses.setAllCourses(reader.readFile("src/main/resources/csv/courses.csv")));
+    }
+
+    public Collection<Courses> getCourses() {
+        return courses;
+    }
+
+    public Courses getCourse(String name, String departmentCode, String courseNumber) {
+        for(Courses course: courses) {
+            if(course.getName().equals(name) && course.getDepartmentCode().equals(departmentCode) &&
+                    course.getCourseNumber().equals(courseNumber)) {
+                return course;
+            }
+        }
+        return null;
+    }
+
 }

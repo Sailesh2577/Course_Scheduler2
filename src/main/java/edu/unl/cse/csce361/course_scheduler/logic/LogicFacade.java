@@ -1,9 +1,6 @@
 package edu.unl.cse.csce361.course_scheduler.logic;
 
-import edu.unl.cse.csce361.course_scheduler.backend.Admin;
-import edu.unl.cse.csce361.course_scheduler.backend.Backend;
-import edu.unl.cse.csce361.course_scheduler.backend.Course;
-import edu.unl.cse.csce361.course_scheduler.backend.Student;
+import edu.unl.cse.csce361.course_scheduler.backend.*;
 
 import java.util.Collection;
 
@@ -46,6 +43,11 @@ public class LogicFacade {
         backendFacade.addNewCourse(courseName,courseNumber);
     }
 
+    public boolean courseExistence(FourYearSchedule course, String courseNumber) {return
+            backendFacade.checkCoursesExist(course,  courseNumber);}
+
+    public String getCourseNumber(FourYearSchedule course) {return backendFacade.getCourseNumber(course);}
+
     public Student getStudent(String name, String id) {
         return backendFacade.getStudent(name, id);
     }
@@ -54,11 +56,25 @@ public class LogicFacade {
         return backendFacade.getStudentName(student);
     }
 
+
     public void setAllStudents() {
         backendFacade.setAllStudents();
     }
 
-    public void setAllCourses() {backendFacade.setAllCourses();}
+    public Collection<Student> getStudents() {
+        return backendFacade.getStudents();
+    }
 
-    public Collection<Course> getAllCourses() { return backendFacade.getAllCourses();}
+    public void setAllCourses() {
+        backendFacade.setAllCourses();
+    }
+
+    public Collection<Courses> getCourses() {
+        return backendFacade.getCourses();
+    }
+
+    public Courses getCourse(String name, String departmentCode, String courseNumber) {
+        return backendFacade.getCourse(name, departmentCode, courseNumber);
+    }
+
 }
