@@ -264,7 +264,7 @@ public class CLI {
                     int editScheduleOption = scanner.nextInt();
 
                     if (editScheduleOption == 1) {
-                        System.out.println("Please enter the course number that you want to add to your schedule:");
+                        System.out.println("Please enter department code and course number for courses that you want to add to your schedule:");
                         courseNumber = scanner1.nextLine();
 
                         logicFacade.addCourse(student, courseNumber);
@@ -272,7 +272,7 @@ public class CLI {
                     }
 
                     else if(editScheduleOption == 2) {
-                        System.out.println("Please enter the course number that you want to drop from your schedule:");
+                        System.out.println("Please enter department code and course number for courses that you want to drop from your schedule:");
                         courseNumber = scanner1.nextLine();
 
                         logicFacade.dropCourse(student, courseNumber);
