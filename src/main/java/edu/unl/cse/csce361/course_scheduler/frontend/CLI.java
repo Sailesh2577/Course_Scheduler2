@@ -255,12 +255,12 @@ public class CLI {
                     int editScheduleOption = scanner.nextInt();
 
                     if (editScheduleOption == 1) {
-                        System.out.println("Please state the course number that you want to add to your schedule:");
+                        System.out.println("Please enter the course number that you want to add to your schedule:");
                         courseNumber = scanner1.nextLine();
                     }
 
                     else if(editScheduleOption == 2) {
-                        System.out.println("Please state the course number that you want to drop from your schedule:");
+                        System.out.println("Please enter the course number that you want to drop from your schedule:");
                         courseNumber = scanner1.nextLine();
                     }
 
