@@ -1,8 +1,10 @@
 package edu.unl.cse.csce361.course_scheduler.backend;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class Backend {
     private static Backend uniqueFacade;
@@ -11,6 +13,7 @@ public class Backend {
     private Collection<Courses> courses;
     private final CsvReader reader;
     private final CsvWriter writer;
+    private final String NEW_SCHEDULE = "Semester,Name,Department Code,Course Number";
 
     public Backend() {
         reader = new CsvReader();
@@ -51,11 +54,12 @@ public class Backend {
     public void registerStudent(String newStudentName, String description) {
         Student student = new Student(newStudentName,description);
         writer.writeToFile("students.csv",student.toCsvFormat());
+        writer.writeNewFile(student.getScheduleFilename(),NEW_SCHEDULE);
         setAllStudents();
     }
 
-    public void addNewCourse(String courseName, String courseNumber) {
-        writer.writeToFile("courses.csv", (courseName + ", " + courseNumber));
+    public void addNewCourse(String name, String id, String num) {
+        writer.writeToFile("courses.csv", (name + ", " + id + "," + num));
     }
 
     public void setAllStudents() {
@@ -119,11 +123,6 @@ public class Backend {
         optimalSchedule.printSchedule();
     }
 
-    public void setStudentSchedule(Student student) {
-        String filename = "src/main/resources/csv/schedules/" + student.getId() + "_schedule.csv";
-        student.setSchedule(new Schedule(reader.readFile(filename)));
-    }
-
     public void printSchedule(Schedule schedule) {
         schedule.printSchedule();
     }
@@ -147,5 +146,19 @@ public class Backend {
             }
         }
         return null;
+    }
+
+    public void updateStudentSchedules() {
+        for (Student student : students) {
+            String filename = "src/main/resources/csv/schedules/" + student.getId() + "_schedule.csv";
+            Collection<Map<String,String>> readSchedule = reader.readFile(filename);
+
+            if (readSchedule != null) {
+                student.setSchedule(new Schedule(readSchedule));
+            }
+            else {
+                writer.writeNewFile(student.getScheduleFilename(),NEW_SCHEDULE);
+            }
+        }
     }
 }

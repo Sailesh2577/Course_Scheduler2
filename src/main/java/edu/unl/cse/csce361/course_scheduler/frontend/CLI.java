@@ -19,6 +19,7 @@ public class CLI {
         logicFacade.setAllAdmins();
         logicFacade.setAllStudents();
         logicFacade.setAllCourses();
+        logicFacade.updateStudentSchedules();
 
         while (!exit) {
             validSelection = false;
@@ -155,6 +156,7 @@ public class CLI {
             String newStudentName;
             GradeLevels gradeLevelSelected = null;
             String courseName;
+            String departmentId;
             String courseNumber;
 
 
@@ -194,10 +196,14 @@ public class CLI {
                     courseName = scanner.nextLine();
 
                     System.out.println();
-                    System.out.println("Please enter course department code and number (Use format 'XXXX 000')");
+                    System.out.println("Please enter course department code: ");
                     courseNumber = scanner.nextLine();
 
-                    logicFacade.addNewCourse(courseName,courseNumber);
+                    System.out.println();
+                    System.out.println("Please enter course number: ");
+                    departmentId = scanner.nextLine();
+
+                    logicFacade.addNewCourse(courseName,departmentId,courseNumber);
 
                     break;
                 case BACK:
@@ -214,7 +220,6 @@ public class CLI {
     }
 
     public void studentMenu(Student student) {
-        logicFacade.setStudentSchedule(student);
         boolean goBack = false;
         boolean validSelection;
         int selection;

@@ -28,6 +28,8 @@ public class CsvReader {
                     csvList.add(map);
                 }
             }
+        }catch (FileNotFoundException fnf) {
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
         }

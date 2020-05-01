@@ -43,10 +43,16 @@ public class Schedule {
 
 
     public String getNextSemester() {
-        Map<String,Courses> lastScheduledSemester = schedule.get(schedule.size() - 1);
+        Map<String,Courses> lastScheduledSemester = null;
         String[] thisSemester = null;
         String nextSemester;
 
+        if (schedule.size() == 0) {
+            return getCurrentSemester();
+        }
+        else {
+             lastScheduledSemester = schedule.get(schedule.size() - 1);
+        }
         for (Map.Entry<String,Courses> indivMap : lastScheduledSemester.entrySet()) {
             thisSemester = indivMap.getKey().split(" ");
         }
@@ -61,5 +67,17 @@ public class Schedule {
             nextSemester = "Fall";
         }
         return (nextSemester + " " + year);
+    }
+    private String getCurrentSemester() {
+        Calendar calendar = GregorianCalendar.getInstance(Locale.US);
+        String semester = "";
+
+        if ((calendar.get(Calendar.MONTH) + 1) < 7) {
+            semester = "Spring";
+        }
+        else {
+            semester = "Fall";
+        }
+        return (semester + " " + calendar.get(Calendar.YEAR));
     }
 }
