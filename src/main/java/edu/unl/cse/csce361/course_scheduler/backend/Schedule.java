@@ -5,7 +5,11 @@ import java.util.*;
 public class Schedule {
     //List of Maps that are String, Courses pair in which the string is the Semester and Courses is the course they
     //plan to take
-    private static ArrayList<Map<String, Courses>> schedule = new ArrayList<>();
+    private static ArrayList<Map<String, Courses>> schedule;
+
+    public Schedule() {
+        schedule = new ArrayList<>();
+    }
 
     public Schedule(Collection<Map<String, String>> studentCourses) {
         for (Map<String,String> map : studentCourses) {
@@ -19,13 +23,13 @@ public class Schedule {
     public static void addCourse(String semester, Courses course) {
         Map<String, Courses> semesterCourse = new HashMap<>();
         semesterCourse.put(semester, course);
-        this.schedule.add(semesterCourse);
+        schedule.add(semesterCourse);
     }
 
     public void deleteCourse(String semester, Courses course) {
         Map<String, Courses> semesterCourse = new HashMap<>();
         semesterCourse.put(semester, course);
-        this.schedule.remove(semesterCourse);
+        schedule.remove(semesterCourse);
     }
 
     public ArrayList<Map<String, Courses>> getSchedule() {

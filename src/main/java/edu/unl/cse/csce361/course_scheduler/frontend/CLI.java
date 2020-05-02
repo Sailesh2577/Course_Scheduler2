@@ -211,6 +211,9 @@ public class CLI {
                     break;
                 case SHOW_OPTIMIZED_SCHEDULE:
                     logicFacade.showAdminSchedule();
+                    //Second attempt at implementing the optimized schedule its commented out because I do not
+                    //believe it is working properly and not sure which implementation we are going with
+                    //logicFacade.prepareSchedule();
                     break;
                 default:
                     System.out.println("Whomp whomp");

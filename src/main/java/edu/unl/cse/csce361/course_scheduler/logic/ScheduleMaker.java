@@ -138,7 +138,6 @@ public class ScheduleMaker {
 
 
     public ArrayList<Courses> nonDuplicateList (ArrayList<Courses> listA, ArrayList<Courses> listB) {
-        Courses courseA, courseB;
 
         for(int i = 0; i < listB.size(); i++) {
             if(!listA.contains(listB.get(i))) {

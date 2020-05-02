@@ -98,4 +98,9 @@ public class LogicFacade {
     public Schedule getSchedule(Student student) {
         return backendFacade.getSchedule(student);
     }
+
+    public Collection<Student> getStudents() {
+        return backendFacade.getStudents();
+    }
+
 }
