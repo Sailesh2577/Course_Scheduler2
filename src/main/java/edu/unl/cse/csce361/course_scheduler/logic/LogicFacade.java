@@ -81,4 +81,17 @@ public class LogicFacade {
         backendFacade.printCourses();
     }
 
+    public Schedule prepareSchedule() {
+        ScheduleMaker scheduleMaker = new ScheduleMaker();
+        return scheduleMaker.prepareSchedule();
+    }
+
+    public Schedule getSchedule(Student student) {
+        return backendFacade.getSchedule(student);
+    }
+
+    public void printSchedule(Schedule schedule) {
+        backendFacade.printSchedule(schedule);
+    }
+
 }

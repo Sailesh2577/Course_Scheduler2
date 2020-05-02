@@ -7,7 +7,7 @@ public class Student extends User {
     private String studentId;
     private String gradeLevel;
     private String username;
-    private Schedule schedule = new Schedule();
+    private Schedule schedule;
     private static ArrayList<Student> students = new ArrayList<>();
 
 
@@ -15,6 +15,7 @@ public class Student extends User {
         this.name = name;
         this.studentId = studentId;
         this.gradeLevel = gradeLevel;
+        this.schedule = new Schedule();
         students.add(this);
     }
 

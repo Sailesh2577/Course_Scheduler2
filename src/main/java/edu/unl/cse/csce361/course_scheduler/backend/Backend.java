@@ -117,4 +117,12 @@ public class Backend {
         }
     }
 
+    public Schedule getSchedule(Student student) {
+        return student.getSchedule();
+    }
+
+    public void printSchedule(Schedule schedule) {
+        schedule.printSchedule();
+    }
+
 }

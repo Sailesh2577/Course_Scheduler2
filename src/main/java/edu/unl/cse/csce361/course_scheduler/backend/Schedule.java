@@ -14,13 +14,13 @@ public class Schedule {
     public void addCourse(String semester, Courses course) {
         Map<String, Courses> semesterCourse = new HashMap<>();
         semesterCourse.put(semester, course);
-        schedule.add(semesterCourse);
+        this.schedule.add(semesterCourse);
     }
 
     public void deleteCourse(String semester, Courses course) {
         Map<String, Courses> semesterCourse = new HashMap<>();
         semesterCourse.put(semester, course);
-        schedule.remove(semesterCourse);
+        this.schedule.remove(semesterCourse);
     }
 
     public ArrayList<Map<String, Courses>> getSchedule() {
@@ -31,9 +31,11 @@ public class Schedule {
     public void printSchedule() {
         System.out.println();
 
+        ArrayList<Map<String, Courses>> studentSchedule = getSchedule();
+
         for(int i = 0; i < 8; i++) {
             System.out.println("Semester " + (i + 1) + ": ");
-            Iterator<Map<String, Courses>> iterator = schedule.iterator();
+            Iterator<Map<String, Courses>> iterator = studentSchedule.iterator();
             while(iterator.hasNext()) {
                 Map<String, Courses> course = iterator.next();
                 if(course.get("Semester " + (i + 1)) != null) {
