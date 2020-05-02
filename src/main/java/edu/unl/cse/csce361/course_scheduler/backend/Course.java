@@ -4,3 +4,4 @@ public abstract class Course {
     public abstract String getCourseName();
     public abstract String getCourseNumber();
 }
+

@@ -13,7 +13,15 @@ public class FourYearSchedule extends Course {
             schedule.add(this);
         }
 
-        @Override
+    public static Collection<FourYearSchedule> setAllCourses(Collection<Map<String, String>> courseList) {
+            List<FourYearSchedule> courses = new ArrayList<>();
+            for (Map<String,String> map : courseList) {
+                courses.add(new FourYearSchedule(map.get("Name"),map.get("Course#")));
+            }
+        return courses;
+    }
+
+    @Override
         public String getCourseName() {return courseName;}
 
         @Override
@@ -48,4 +56,4 @@ public class FourYearSchedule extends Course {
 
             return course;
         }
-    }
+}

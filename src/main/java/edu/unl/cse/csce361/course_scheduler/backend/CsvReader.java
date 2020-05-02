@@ -22,12 +22,14 @@ public class CsvReader {
                     keys = Arrays.asList(row);
                     keyLineRead = true;
                 } else {
-                    for (int i = 0; i < 3; ++i) {
+                    for (int i = 0; i < row.length; ++i) {
                         map.put(keys.get(i), row[i]);
                     }
                     csvList.add(map);
                 }
             }
+        }catch (FileNotFoundException fnf) {
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
         }
