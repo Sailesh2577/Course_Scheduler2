@@ -62,16 +62,8 @@ public class LogicFacade {
         backendFacade.showAdminSchedule();
     }
 
-    public Collection<Student> getStudents() {
-        return backendFacade.getStudents();
-    }
-
     public void setAllCourses() {
         backendFacade.setAllCourses();
-    }
-
-    public Collection<Courses> getCourses() {
-        return backendFacade.getCourses();
     }
 
     public Courses getCourse(String name, String departmentCode, String courseNumber) {

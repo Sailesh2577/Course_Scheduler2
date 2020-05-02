@@ -1,8 +1,6 @@
 package edu.unl.cse.csce361.course_scheduler.backend;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 public class Backend {
@@ -10,8 +8,6 @@ public class Backend {
     private Collection<Admin> admins;
     private Collection<Student> students;
     private Collection<Courses> courses;
-    private ArrayList<Student> studentList;
-    private ArrayList<Courses> courseList;
     private final CsvReader reader;
     private final CsvWriter writer;
     private final String NEW_SCHEDULE = "Semester,Name,Department Code,Course Number";
@@ -95,10 +91,6 @@ public class Backend {
 
     public void setAllCourses() {
         courses = (Courses.setAllCourses(reader.readFile("src/main/resources/csv/courses.csv")));
-    }
-
-    public Collection<Courses> getCourses() {
-        return courses;
     }
 
     public Courses getCourse(String name, String departmentCode, String courseNumber) {

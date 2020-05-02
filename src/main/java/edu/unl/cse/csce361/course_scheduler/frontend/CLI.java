@@ -224,7 +224,6 @@ public class CLI {
         boolean validSelection;
         int selection;
         String courseNumber;
-        Courses course = new Courses(null, null, null);
         StudentOptions optionSelected = null;
         Scanner scanner1 = new Scanner(System.in);
 
