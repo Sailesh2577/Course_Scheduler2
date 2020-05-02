@@ -77,4 +77,8 @@ public class LogicFacade {
         return backendFacade.getCourse(name, departmentCode, courseNumber);
     }
 
+    public void printCourses() {
+        backendFacade.printCourses();
+    }
+
 }

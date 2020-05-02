@@ -1,6 +1,7 @@
 package edu.unl.cse.csce361.course_scheduler.backend;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 public class Backend {
     private static Backend uniqueFacade;
@@ -54,6 +55,7 @@ public class Backend {
 
     public void addNewCourse(String courseName, String courseNumber) {
         writer.writeToFile("courses.csv", (courseName + ", " + courseNumber));
+        setAllCourses();
     }
 
     public void setAllStudents() {
@@ -76,10 +78,6 @@ public class Backend {
     public String getStudentName(Student student) {
         return student.getName();
     }
-
-    /*public Collection<FourYearSchedule> getCourses() {
-        return courses;
-    }*/
 
     public String getCourseNumber(FourYearSchedule course) {
         return course.getCourseNumber();
@@ -110,6 +108,13 @@ public class Backend {
             }
         }
         return null;
+    }
+
+    public void printCourses() {
+        Iterator<Courses> iterator = courses.iterator();
+        while(iterator.hasNext()) {
+            System.out.println(iterator.next().toString());
+        }
     }
 
 }
