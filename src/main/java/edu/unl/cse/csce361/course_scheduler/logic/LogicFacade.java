@@ -1,9 +1,8 @@
 package edu.unl.cse.csce361.course_scheduler.logic;
 
-import edu.unl.cse.csce361.course_scheduler.backend.Admin;
-import edu.unl.cse.csce361.course_scheduler.backend.Backend;
-import edu.unl.cse.csce361.course_scheduler.backend.FourYearSchedule;
-import edu.unl.cse.csce361.course_scheduler.backend.Student;
+import edu.unl.cse.csce361.course_scheduler.backend.*;
+
+import java.util.Collection;
 
 public class LogicFacade {
     private static LogicFacade uniqueFacade;
@@ -40,13 +39,12 @@ public class LogicFacade {
         backendFacade.registerStudent(newStudentName,description);
     }
 
-    public void addNewCourse(String courseName, String courseNumber) {
-        backendFacade.addNewCourse(courseName,courseNumber);
+    public void addNewCourse(String name, String id, String num) {
+        backendFacade.addNewCourse(name,id,num);
     }
 
-    public boolean courseExistence(FourYearSchedule course, String courseNumber) {return backendFacade.checkCoursesExist(course,  courseNumber);}
-
-    public String getCourseNumber(FourYearSchedule course) {return backendFacade.getCourseNumber(course);}
+    public boolean courseExistence(Courses course, String courseNumber) {return
+            backendFacade.checkCoursesExist(course,  courseNumber);}
 
     public Student getStudent(String name, String id) {
         return backendFacade.getStudent(name, id);
@@ -56,8 +54,53 @@ public class LogicFacade {
         return backendFacade.getStudentName(student);
     }
 
-
     public void setAllStudents() {
         backendFacade.setAllStudents();
     }
+
+    public void showAdminSchedule() {
+        backendFacade.showAdminSchedule();
+    }
+
+    public void setAllCourses() {
+        backendFacade.setAllCourses();
+    }
+
+    public Courses getCourse(String name, String departmentCode, String courseNumber) {
+        return backendFacade.getCourse(name, departmentCode, courseNumber);
+    }
+
+    public void printSchedule(Schedule schedule) {
+        backendFacade.printSchedule(schedule);
+    }
+
+    public boolean addCourse(Student student, String courseNumber) {
+        return backendFacade.addCourse(student,courseNumber);
+    }
+
+    public boolean dropCourse(Student student, String courseNumber) {
+        return  backendFacade.dropCourse(student, courseNumber);
+    }
+
+    public void updateStudentSchedules() {
+        backendFacade.updateStudentSchedules();
+    }
+
+    public void printCourses() {
+        backendFacade.printCourses();
+    }
+
+    public Schedule prepareSchedule() {
+        ScheduleMaker scheduleMaker = new ScheduleMaker();
+        return scheduleMaker.prepareSchedule();
+    }
+
+    public Schedule getSchedule(Student student) {
+        return backendFacade.getSchedule(student);
+    }
+
+    public Collection<Student> getStudents() {
+        return backendFacade.getStudents();
+    }
+
 }

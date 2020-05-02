@@ -7,7 +7,8 @@ public class Student extends User {
     private String studentId;
     private String gradeLevel;
     private String username;
-    private FourYearSchedule schedule;
+    private Schedule schedule = new Schedule();
+    private String scheduleFilename;
     private static ArrayList<Student> students = new ArrayList<>();
 
 
@@ -15,6 +16,7 @@ public class Student extends User {
         this.name = name;
         this.studentId = studentId;
         this.gradeLevel = gradeLevel;
+        this.scheduleFilename = ("schedules/" + studentId + "_schedule.csv");
         students.add(this);
     }
 
@@ -24,6 +26,7 @@ public class Student extends User {
         this.gradeLevel = gradeLevel;
         this.studentId = generateId();
         this.username = generateUsername(name);
+        this.scheduleFilename = ("schedules/" + studentId + "_schedule.csv");
         students.add(this);
 
     }
@@ -75,6 +78,7 @@ public class Student extends User {
         }
         return username;
     }
+    public String getScheduleFilename() {return scheduleFilename;}
 
     @Override
     public String toString() {
@@ -96,8 +100,12 @@ public class Student extends User {
         return students;
     }
 
-    public FourYearSchedule getSchedule() {
+    public Schedule getSchedule() {
         return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
 
 

@@ -1,13 +1,9 @@
 package edu.unl.cse.csce361.course_scheduler.frontend;
 
-import edu.unl.cse.csce361.course_scheduler.backend.Course;
-import edu.unl.cse.csce361.course_scheduler.backend.FourYearSchedule;
-import edu.unl.cse.csce361.course_scheduler.backend.Student;
+import edu.unl.cse.csce361.course_scheduler.backend.*;
 import edu.unl.cse.csce361.course_scheduler.logic.LogicFacade;
 
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 public class CLI {
     private Scanner scanner;
@@ -22,6 +18,8 @@ public class CLI {
 
         logicFacade.setAllAdmins();
         logicFacade.setAllStudents();
+        logicFacade.setAllCourses();
+        logicFacade.updateStudentSchedules();
 
         while (!exit) {
             validSelection = false;
@@ -86,31 +84,6 @@ public class CLI {
 
                         //Student record with inputted student id does exist
                     } else {
-
-                        //Welcome message
-                        System.out.println("Welcome " + student.getName());
-
-                        //Prompt the user to enter an option of either editing schedule or entering schedule
-                        System.out.println("1 - Edit Schedule");
-                        System.out.println("2 - Enter Schedule");
-                        System.out.println("Please select an option:");
-                        int scheduleOption = scanner.nextInt();
-
-                        if(scheduleOption == 1) {
-                            //Editing schedule
-                            System.out.println("Not yet implemented");
-                        } else if(scheduleOption == 2) {
-                            //Enter schedule
-                            System.out.println("Please enter the course number you want for your schedule:");
-                            String courseNumber = scanner.nextLine();
-
-                            //Add new course into schedule
-                            Course courses = FourYearSchedule.getSchedule(courseNumber);
-
-
-                             System.out.println("Course added.");
-                        }
-
                         studentMenu(student);
                     }
 
@@ -183,6 +156,7 @@ public class CLI {
             String newStudentName;
             GradeLevels gradeLevelSelected = null;
             String courseName;
+            String departmentId;
             String courseNumber;
 
 
@@ -222,14 +196,24 @@ public class CLI {
                     courseName = scanner.nextLine();
 
                     System.out.println();
-                    System.out.println("Please enter course department code and number (Use format 'XXXX 000')");
+                    System.out.println("Please enter course department code: ");
                     courseNumber = scanner.nextLine();
 
-                    logicFacade.addNewCourse(courseName,courseNumber);
+                    System.out.println();
+                    System.out.println("Please enter course number: ");
+                    departmentId = scanner.nextLine();
+
+                    logicFacade.addNewCourse(courseName,departmentId,courseNumber);
 
                     break;
                 case BACK:
                     goBack = true;
+                    break;
+                case SHOW_OPTIMIZED_SCHEDULE:
+                    logicFacade.showAdminSchedule();
+                    //Second attempt at implementing the optimized schedule its commented out because I do not
+                    //believe it is working properly and not sure which implementation we are going with
+                    //logicFacade.prepareSchedule();
                     break;
                 default:
                     System.out.println("Whomp whomp");
@@ -242,7 +226,9 @@ public class CLI {
         boolean goBack = false;
         boolean validSelection;
         int selection;
+        String courseNumber;
         StudentOptions optionSelected = null;
+        Scanner scanner1 = new Scanner(System.in);
 
 
         while(!goBack) {
@@ -271,10 +257,54 @@ public class CLI {
 
             switch (optionSelected) {
                 case EDIT_SCHEDULE:
-                    System.out.println("Edit schedule not yet implemented");
+                    System.out.println("1 - Add Course");
+                    System.out.println("2 - Drop Course");
+                    System.out.println("3 - Go Back");
+                    System.out.println("Please select an option for your schedule:");
+                    int editScheduleOption = scanner.nextInt();
+
+                    if (editScheduleOption == 1) {
+                        System.out.println();
+                        System.out.println("Please enter department code and course number that you want to add to your schedule:");
+                        courseNumber = scanner1.nextLine();
+
+                        logicFacade.addCourse(student, courseNumber);
+                        logicFacade.updateStudentSchedules();
+
+                        System.out.println("Course successfully added.");
+                    }
+
+                    else if(editScheduleOption == 2) {
+                        System.out.println();
+                        System.out.println("Please enter department code and course number for courses that you want to drop from your schedule:");
+                        courseNumber = scanner1.nextLine();
+
+                        logicFacade.dropCourse(student, courseNumber);
+                        logicFacade.updateStudentSchedules();
+
+                        System.out.println("Course successfully dropped.");
+                    }
+
+                    else {
+                        goBack = true;
+                    }
+
                     break;
                 case ENTER_SCHEDULE:
-                    System.out.println("Enter schedule not yet implemented");
+                    //Enter schedule
+                    System.out.println("Please enter the course number you want for your schedule:");
+                    courseNumber = scanner.nextLine();
+
+                    //Add new course into schedule
+                    if (logicFacade.addCourse(student, courseNumber)) {
+                        System.out.println("Course added.");
+                    }
+                    else {
+                        System.out.println("No such course. Course not added.");
+                    }
+                    break;
+                case VIEW_SCHEDULE:
+                    logicFacade.printSchedule(student.getSchedule());
                     break;
                 case BACK:
                     goBack = true;
@@ -303,6 +333,7 @@ public class CLI {
     enum AdminOptions {
         REGISTER_STUDENT("Register a new student"),
         ADD_COURSE("Add new course"),
+        SHOW_OPTIMIZED_SCHEDULE("Show optimal schedule"),
         BACK("Go back");
 
         private final String description;
@@ -329,6 +360,7 @@ public class CLI {
     enum StudentOptions {
         EDIT_SCHEDULE("Edit existing schedule"),
         ENTER_SCHEDULE("Enter a schedule"),
+        VIEW_SCHEDULE("View current schedule"),
         BACK("Go back");
 
         private final String description;
