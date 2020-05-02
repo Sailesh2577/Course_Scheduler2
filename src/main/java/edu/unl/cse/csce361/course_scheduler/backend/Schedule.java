@@ -27,12 +27,20 @@ public class Schedule {
         return schedule;
     }
 
-    //Prints out the maps in the list in the format of "Semester # = Course"
+    //Prints out the schedule in terms of semester and which classes are currently being requested in each semester
     public void printSchedule() {
-        Iterator<Map<String, Courses>> iterator = schedule.iterator();
-        while(iterator.hasNext()) {
-            Map<String, Courses> course = iterator.next();
-            System.out.println(course.toString());
+        System.out.println();
+
+        for(int i = 0; i < 8; i++) {
+            System.out.println("Semester " + (i + 1) + ": ");
+            Iterator<Map<String, Courses>> iterator = schedule.iterator();
+            while(iterator.hasNext()) {
+                Map<String, Courses> course = iterator.next();
+                if(course.get("Semester " + (i + 1)) != null) {
+                    System.out.println(course.get("Semester " + (i + 1)));
+                }
+            }
+
         }
     }
 
