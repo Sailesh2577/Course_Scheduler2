@@ -224,6 +224,7 @@ public class CLI {
         boolean validSelection;
         int selection;
         String courseNumber;
+        Courses course = new Courses(null, null, null);
         StudentOptions optionSelected = null;
         Scanner scanner1 = new Scanner(System.in);
 
@@ -254,9 +255,6 @@ public class CLI {
 
             switch (optionSelected) {
                 case EDIT_SCHEDULE:
-                    System.out.println("Here is your schedule.");
-                    System.out.println();  //Get student schedule
-
                     System.out.println("1 - Add Course");
                     System.out.println("2 - Drop Course");
                     System.out.println("3 - Go Back");
@@ -264,7 +262,8 @@ public class CLI {
                     int editScheduleOption = scanner.nextInt();
 
                     if (editScheduleOption == 1) {
-                        System.out.println("Please enter department code and course number for courses that you want to add to your schedule:");
+                        System.out.println();
+                        System.out.println("Please enter department code and course number that you want to add to your schedule:");
                         courseNumber = scanner1.nextLine();
 
                         logicFacade.addCourse(student, courseNumber);
@@ -274,6 +273,7 @@ public class CLI {
                     }
 
                     else if(editScheduleOption == 2) {
+                        System.out.println();
                         System.out.println("Please enter department code and course number for courses that you want to drop from your schedule:");
                         courseNumber = scanner1.nextLine();
 

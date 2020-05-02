@@ -84,24 +84,6 @@ public class Backend {
         return student.getName();
     }
 
-    /*public Collection<FourYearSchedule> getCourses() {
-        return courses;
-    }*/
-
-//    public boolean checkStudentExist(Student student, Courses courses){
-//        if(student != null){
-//            if(studentList.contains(student) == courseList.contains(student)){
-//
-//            }
-//        }
-//        studentList.add(student);
-//        return true;
-//    }
-
-    public String getCourseNumber(Courses course) {
-        return course.getCourseNumber();
-    }
-
     public boolean checkCoursesExist(Courses course, String courseNumber) {
         if(course != null) {
             if(course.getCourseNumber().equals(courseNumber)) {

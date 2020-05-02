@@ -46,8 +46,6 @@ public class LogicFacade {
     public boolean courseExistence(Courses course, String courseNumber) {return
             backendFacade.checkCoursesExist(course,  courseNumber);}
 
-    public String getCourseNumber(Courses course) {return backendFacade.getCourseNumber(course); }
-
     public Student getStudent(String name, String id) {
         return backendFacade.getStudent(name, id);
     }
@@ -67,10 +65,6 @@ public class LogicFacade {
     public Collection<Student> getStudents() {
         return backendFacade.getStudents();
     }
-
-//    public boolean studentExistence(Student student, Courses courses) {
-//        return backendFacade.checkStudentExist(student);
-//    }
 
     public void setAllCourses() {
         backendFacade.setAllCourses();
