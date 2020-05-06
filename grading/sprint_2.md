@@ -35,11 +35,17 @@ n/13
 
 ### Commit Messages
 
-n/5
+3.5/5
 
 ```
-(formatting check output)
+Commit 5a072185 has 1 line too long.
+Commit d90482d4 has 1 line too long.
+Commit e97e9374 has 1 line too long.
+Commit 865e2ffd has 2 lines too long.
+Commit 9cd33054 has 1 line too long.
 ```
+
+-   "Added deleting unnecessary functions" is a confusing message
 
 ### Functionality
 
