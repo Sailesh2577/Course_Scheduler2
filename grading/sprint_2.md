@@ -55,10 +55,17 @@ n/15
 
 n/9
 
+```
+Merges with unresolved conflicts:    1
+Merges without unresolved conflicts: 21
+```
+
 ### Presentation / Demonstration
 
-n/10
+10/10
 
 ### Bonus Credit
 
-n/5
+0/5
+
+-   None attempted
