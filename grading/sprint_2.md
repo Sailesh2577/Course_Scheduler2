@@ -2,7 +2,9 @@
 
 ##  Exam
 
-n/3
+1/3
+
+-   No security: knowing student ID / admin ID is enough to gain access
 
 ##  Project
 
@@ -27,11 +29,20 @@ n/3
 
 ### Design
 
-n/14
+13.5/14
+
+-   Addressed specific design problems identified from Sprint 1
+-   1 field or method declared as concrete ADT
 
 ### Code Style
 
-n/13
+10/13
+
+-   Variable names in CLI could be more meaningful (`adop`, `menop`)
+    **(repeated from sprint 1)**
+-   In Backend.checkCourseExists, `if(x) return true else return false` can be
+    simplified to `return (x)`
+-   Unused imports
 
 ### Commit Messages
 
@@ -49,11 +60,17 @@ Commit 9cd33054 has 1 line too long.
 
 ### Functionality
 
-n/15
+12/15
+
+-   Program crashed when entering course number
+-   No option to upload other departments' course schedule
+-   Proposed semester schedules lack data expected by customer
 
 ### Software Engineering Practices
 
-n/9
+7.5/9
+
+-   Unhandled NumberFormatException resulted in program crash
 
 ```
 Merges with unresolved conflicts:    1
